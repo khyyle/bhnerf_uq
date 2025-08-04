@@ -1,3 +1,12 @@
+# bhnerf + bayesrays
+The uncertainty is computed in `bhnerf/uncertainty`
+This is tested `tutorials/Tutorial 4 - estimate 3D emission` where we take one of the pre trained models from our ensemble and try and do bayesrays on it for one discrete point in time.
+
+Repository cloned from Aviad levis
+
+
+
+
 # bhnerf
 Gravitationally Lensed Black Hole Emission Tomography using [Neural Radiance Fields (NeRF)](https://www.matthewtancik.com/nerf).
 
