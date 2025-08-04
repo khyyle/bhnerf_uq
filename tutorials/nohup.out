@@ -1,0 +1,1600 @@
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 12:40:39.866664: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+2025-07-25 12:40:39.866696: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+2025-07-25 12:40:39.866680: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 12:40:48.173838: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 12:59:09.824038: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 12:59:13.640591: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+2025-07-25 12:59:13.640608: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 13:09:16.173437: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 13:17:54.735921: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 13:17:59.640486: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 13:18:03.909329: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+2025-07-25 13:36:07.134000: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 13:36:45.929356: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 13:36:47.534701: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 13:36:49.561593: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 13:55:36.527144: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 13:56:15.700295: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+2025-07-25 13:56:15.700496: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 13:56:16.940941: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 14:15:29.236620: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+2025-07-25 14:15:29.236709: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 14:15:31.002315: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 14:15:45.696758: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 14:35:05.909766: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 14:35:08.103564: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 14:35:17.658859: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 14:35:32.144476: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 14:54:24.587402: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+2025-07-25 14:54:24.587419: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 14:54:32.043611: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 14:54:43.519615: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 15:13:42.618872: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 15:13:49.767731: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 15:13:52.702501: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 15:14:24.940901: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 15:33:03.700458: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+2025-07-25 15:33:13.874648: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 15:33:15.458513: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 15:33:37.808716: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 15:52:27.799967: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 15:52:39.295853: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 15:52:44.392251: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 15:52:53.378133: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 16:11:50.046249: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 16:12:01.263963: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 16:12:07.444670: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 16:12:19.501588: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+2025-07-25 16:31:37.990515: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 16:31:52.551534: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 16:31:58.186346: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+2025-07-25 16:31:58.186361: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 16:50:58.797474: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 16:51:10.275259: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 16:51:15.713860: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 16:51:19.323961: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+2025-07-25 17:10:33.940821: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 17:10:35.754733: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 17:10:49.148131: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 17:10:51.962263: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+2025-07-25 17:29:52.053688: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+2025-07-25 17:29:52.053680: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 17:30:08.128992: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 17:30:14.087056: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 17:49:29.023511: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+2025-07-25 17:49:34.540238: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 17:49:38.745863: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 17:50:03.277128: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 18:08:50.083925: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 18:08:58.779957: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+2025-07-25 18:09:08.454694: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 18:09:44.401864: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+2025-07-25 18:28:08.607334: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 18:28:26.043439: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 18:28:28.608482: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 18:29:03.764835: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+2025-07-25 18:47:28.136898: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+2025-07-25 18:47:44.188199: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 18:48:15.773487: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 18:48:25.317940: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+2025-07-25 19:06:53.022912: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 19:07:22.453272: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 19:07:26.955803: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 19:07:38.349849: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+2025-07-25 19:26:23.450642: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 19:26:34.344738: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 19:26:41.966432: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 19:26:55.895020: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 19:45:44.929900: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 19:45:51.726866: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 19:45:59.848873: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 19:46:15.230345: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+2025-07-25 20:05:06.156432: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 20:05:15.461104: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 20:05:15.848891: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 20:05:31.409228: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 20:24:20.737552: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 20:24:23.131792: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 20:24:27.183839: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 20:25:01.854299: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/ehtim/__init__.py:56: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WARNING:absl:Tensorflow library not found, tensorflow.io.gfile operations will use native shim calls. GCS paths (i.e. 'gs://...') cannot be accessed.
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+2025-07-25 20:43:36.280577: W external/xla/xla/service/gpu/nvptx_compiler.cc:765] The NVIDIA driver's CUDA version is 12.2 which is older than the ptxas CUDA version (12.9.86). Because the driver is older than the ptxas version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+/srv/tmp/kyle/miniconda3/envs/jax/lib/python3.9/site-packages/xarray/core/computation.py:821: RuntimeWarning: invalid value encountered in sqrt
+  result_data = func(*input_data)
+WARNING:absl:The `aggregate` option is deprecated and will be ignored.
+Welcome to eht-imaging! v 1.2.4 
+
+Producing clean visibilities from movie with direct FT . . . 
+Applying Jones Matrices to data . . . 
+Adding thermal noise to data . . . 
+Applying a priori calibration with estimated Jones matrices . . . 
+Splitting Observation File into 64 times

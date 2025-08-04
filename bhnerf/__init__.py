@@ -1,6 +1,6 @@
 import warnings
 
-from . import utils, emission, visualization, network, optimization, constants, kgeo, alma
+from . import utils, emission, visualization, network, optimization, constants, kgeo, alma, uncertainty
 
 try:
     from . import observation

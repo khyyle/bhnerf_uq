@@ -166,7 +166,7 @@ class NeRF_Predictor(nn.Module):
                            raytracing_args['t_start_obs'], 
                            raytracing_args['t_geos'], 
                            raytracing_args['t_injection'])['params']
-        return params.unfreeze() # TODO(pratul): this unfreeze feels sketchy
+        return params #.unfreeze() # TODO(pratul): this unfreeze feels sketchy
 
     def init_state(self, params, num_iters=5000, lr_init=1e-4, lr_final=1e-6, lr_inject=None, checkpoint_dir=''):
         
@@ -282,7 +282,7 @@ class GRID_Predictor(nn.Module):
                            raytracing_args['t_start_obs'], 
                            raytracing_args['t_geos'], 
                            raytracing_args['t_injection'])['params']
-        return params.unfreeze() # TODO(pratul): this unfreeze feels sketchy
+        return params #.unfreeze() # TODO(pratul): this unfreeze feels sketchy
 
     def init_state(self, params, num_iters=5000, lr_init=1e-4, lr_final=1e-6, lr_inject=None, checkpoint_dir=''):
         

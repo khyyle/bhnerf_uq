@@ -4,6 +4,7 @@ from jax import numpy as jnp
 import bhnerf
 from bhnerf import kgeo
 import os
+from pathlib import Path
 from astropy import units   
 from flax.training import checkpoints
 from tqdm.auto import tqdm
@@ -109,6 +110,7 @@ class Optimizer(object):
         )
         
         if checkpoint_dir != '':
+            self.checkpoint_dir = os.fspath(Path(checkpoint_dir).resolve())
             predictor.save_params(checkpoint_dir)
         
     def log(self):

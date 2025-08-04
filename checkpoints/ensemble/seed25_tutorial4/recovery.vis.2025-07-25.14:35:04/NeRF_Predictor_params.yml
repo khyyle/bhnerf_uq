@@ -1,0 +1,10 @@
+do_skip: true
+net_depth: 4
+net_width: 128
+out_channel: 1
+posenc_deg: 3
+posenc_var: 2.0e-05
+rmax: 8.0
+rmin: 1.9797958973073218
+scale: 8.0
+z_width: 4

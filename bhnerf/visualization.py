@@ -326,6 +326,15 @@ def animate_movies_synced(movie_list, axes, t_dim='t', vmin=None, vmax=None, cma
         for movie, im in zip(movie_list, images):
             im.set_array(movie.isel({t_dim: i}))
         return images
+    
+    def animate_frame(i):
+        updated = []
+        for movie, im in zip(movie_list, images):
+            frame = movie.isel({t_dim: i}).values   # numpy array
+            im.set_array(frame)
+            im.set_clim(float(frame.min()), float(frame.max()))
+            updated.append(im)
+        return updated
 
     fig = plt.gcf()
     num_frames, nx, ny = movie_list[0].sizes.values()
@@ -352,7 +361,7 @@ def animate_movies_synced(movie_list, axes, t_dim='t', vmin=None, vmax=None, cma
             divider = make_axes_locatable(ax)
             cax = divider.append_axes('right', size='5%', pad=0.05)
             fig.colorbar(im, cax=cax)
-        im.set_clim(vmin, vmax)
+        #im.set_clim(vmin, vmax)
         images.append(im)
         if flipy:
             ax.invert_yaxis()
@@ -365,7 +374,7 @@ def animate_movies_synced(movie_list, axes, t_dim='t', vmin=None, vmax=None, cma
         anim.save(output, writer=writer)
     return anim
 
-@xr.register_dataarray_accessor("visualization")
+@xr.register_dataarray_accessor("bv_viz")
 class _VisualizationAccessor(object):
     """
     Register a custom accessor VisualizationAccessor on xarray.DataArray object.
@@ -474,10 +483,19 @@ class _VisualizationAccessor(object):
         # Initialization function: plot the background of each frame
         im = ax.imshow(np.zeros((nx, ny)), extent=extent, origin='lower', cmap=cmap)
         if add_colorbar:
-            fig.colorbar(im)
+            divider = make_axes_locatable(ax)
+            cax = divider.append_axes('right', size='3%', pad=0.2)
+            fig.colorbar(im, cax=cax)
         if add_ticks == False:
             ax.set_xticks([])
             ax.set_yticks([])
+
+        def animate_frame(i):
+            frame = movie.isel({t_dim: i})
+            im.set_array(frame)
+            im.set_clim(frame.min(), frame.max())   #  <-- per-frame colour limits
+            return [im]
+
         vmin = movie.min() if vmin is None else vmin
         vmax = movie.max() if vmax is None else vmax
         im.set_clim(vmin, vmax)
@@ -758,11 +776,10 @@ def draw_bh(emission, pts, bh_radius, bh_albedo):
 def ipyvolume_3d(volume, fov, azimuth=0, elevation=-60, distance=2.5, level=[0, 0.2, 0.7], opacity=[0, 0.2, 0.3], controls=False):
     
     import ipyvolume as ipv
-    
     if volume.ndim == 3:
         ipv.figure()
         ipv.view(azimuth, elevation, distance=distance)
-        ipv.volshow(volume, extent=[(-fov/2, fov/2)]*3, memorder='F', level=level, opacity=opacity, controls=controls)
+        ipv.volshow(volume, extent=[(-fov/2, fov/2)]*3, memorder='F', level=level, opacity=opacity, controls=True)
         ipv.show()
         
     elif volume.ndim == 4:
@@ -775,5 +792,46 @@ def ipyvolume_3d(volume, fov, azimuth=0, elevation=-60, distance=2.5, level=[0, 
             ipv.volshow(volume[t], extent=[(-fov/2, fov/2)]*3, memorder='F', level=level, opacity=opacity, controls=controls)
             ipv.show()
             
+            
     else:
         raise AttributeError('volume.ndim = {} not supported'.format(volume.ndim))
+
+def show_uncert_volume(vol, fov,
+                       cmap_name="inferno",
+                       level_norm=[0.0, 0.3, 0.6, 0.9],
+                       opacity   =[0.00, 0.10, 0.45, 0.85],
+                       view_kw   =dict(azimuth=30, elevation=25, distance=2.8)):
+    import ipyvolume as ipv
+    import matplotlib.cm as cm
+    import matplotlib.colors as mcolors
+    
+    """vol ........ 3‑D numpy array (any dtype) – *already normalised* to [0,1]
+    fov ........ physical half‑width of the cube in your GM/c² units
+    cmap_name .. any Matplotlib colormap name
+    level_norm . σ‑knots in [0,1]  (same length as `opacity`)
+    opacity .... opacity at those knots
+    view_kw .... forwarded to ipv.view()"""
+    
+    ipv.figure()
+    ipv.view(**view_kw)
+
+    v = ipv.volshow(vol, extent=[(-fov/2, fov/2)]*3, memorder="F")
+    #print("Rendering with cmap:", cmap_name)
+    cmap   = cm.get_cmap(cmap_name)
+    rgba   = [cmap(l) for l in level_norm]
+    rgba   = np.array(rgba, dtype='float32')
+    rgba[:, 3] = opacity
+
+    tf = ipv.TransferFunction(rgba=rgba,
+                              level=level_norm,
+                              opacity=opacity)
+    v.tf = tf
+    ipv.show()
+    cmap = plt.get_cmap("inferno")
+    fig_cb, ax_cb = plt.subplots(figsize=(4, .35))
+    norm = mcolors.Normalize(vmin=0, vmax=1)
+    cb   = plt.colorbar(cm.ScalarMappable(norm=norm, cmap=cmap),
+                        cax=ax_cb, orientation='horizontal')
+    cb.set_label("normalized σ")
+    plt.show()
+    
