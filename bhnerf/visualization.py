@@ -374,7 +374,7 @@ def animate_movies_synced(movie_list, axes, t_dim='t', vmin=None, vmax=None, cma
         anim.save(output, writer=writer)
     return anim
 
-@xr.register_dataarray_accessor("bv_viz")
+@xr.register_dataarray_accessor("visualize")
 class _VisualizationAccessor(object):
     """
     Register a custom accessor VisualizationAccessor on xarray.DataArray object.
@@ -797,41 +797,159 @@ def ipyvolume_3d(volume, fov, azimuth=0, elevation=-60, distance=2.5, level=[0, 
         raise AttributeError('volume.ndim = {} not supported'.format(volume.ndim))
 
 def show_uncert_volume(vol, fov,
-                       cmap_name="inferno",
+                       cmap_name="plasma",
                        level_norm=[0.0, 0.3, 0.6, 0.9],
                        opacity   =[0.00, 0.10, 0.45, 0.85],
-                       view_kw   =dict(azimuth=30, elevation=25, distance=2.8)):
+                       view_kw   =dict(azimuth=30, elevation=25, distance=2.8)) -> None:
     import ipyvolume as ipv
     import matplotlib.cm as cm
     import matplotlib.colors as mcolors
     
-    """vol ........ 3‑D numpy array (any dtype) – *already normalised* to [0,1]
-    fov ........ physical half‑width of the cube in your GM/c² units
-    cmap_name .. any Matplotlib colormap name
-    level_norm . σ‑knots in [0,1]  (same length as `opacity`)
-    opacity .... opacity at those knots
-    view_kw .... forwarded to ipv.view()"""
-    
-    ipv.figure()
-    ipv.view(**view_kw)
+    """
+    Args:
+        vol: 3D numpy array (any dtype) – *already normalised* to [0,1]
+        fov: physical half‑width of the cube in your GM/c² units
+        cmap_name: any Matplotlib colormap name
+        level_norm: sigma‑knots in [0,1]  (same length as `opacity`)
+        opacity: opacity at those knots
+        view_kw: forwarded to ipv.view()
+    """
+    if vol.ndim == 3:
+        ipv.figure()
+        ipv.view(**view_kw)
 
-    v = ipv.volshow(vol, extent=[(-fov/2, fov/2)]*3, memorder="F")
-    #print("Rendering with cmap:", cmap_name)
-    cmap   = cm.get_cmap(cmap_name)
-    rgba   = [cmap(l) for l in level_norm]
-    rgba   = np.array(rgba, dtype='float32')
-    rgba[:, 3] = opacity
+        v = ipv.volshow(vol, extent=[(-fov/2, fov/2)]*3, memorder="F")
+        #print("Rendering with cmap:", cmap_name)
+        cmap   = cm.get_cmap(cmap_name)
+        rgba   = [cmap(l) for l in level_norm]
+        rgba   = np.array(rgba, dtype='float32')
+        rgba[:, 3] = opacity
 
-    tf = ipv.TransferFunction(rgba=rgba,
-                              level=level_norm,
-                              opacity=opacity)
-    v.tf = tf
-    ipv.show()
-    cmap = plt.get_cmap("inferno")
+        tf = ipv.TransferFunction(rgba=rgba,
+                                level=level_norm,
+                                opacity=opacity)
+        v.tf = tf
+        ipv.show()
+    elif vol.ndim == 4:
+        from ipywidgets import interact
+        import ipywidgets as widgets
+        @interact(t=widgets.IntSlider(min=0, max=vol.shape[0]-1, step=1, value=0))
+        def plot_vol(t):
+            ipv.figure()
+            ipv.view(**view_kw)
+            ipv.volshow(vol[t], extent=[(-fov/2, fov/2)]*3, memorder='F', level=level_norm, opacity=opacity, controls=True)
+            ipv.show()
+
+    cmap = plt.get_cmap(cmap_name)
     fig_cb, ax_cb = plt.subplots(figsize=(4, .35))
     norm = mcolors.Normalize(vmin=0, vmax=1)
     cb   = plt.colorbar(cm.ScalarMappable(norm=norm, cmap=cmap),
                         cax=ax_cb, orientation='horizontal')
     cb.set_label("normalized σ")
     plt.show()
+
+def show_uncert_volume_plotly(std_norm, fov, cmap="Plasma"):
+    import plotly.graph_objects as go
+
+    Z, Y, X = std_norm.shape
+    x = np.linspace(-fov/2, fov/2, X)
+    y = np.linspace(-fov/2, fov/2, Y)
+    z = np.linspace(-fov/2, fov/2, Z)
+    
+    Xg, Yg, Zg = np.meshgrid(x, y, z, indexing='xy')
+
+    fig = go.Figure(
+        data=go.Volume(
+            x=Xg.flatten(),
+            y=Yg.flatten(),
+            z=Zg.flatten(),
+            value=std_norm.flatten(),
+    
+            isomin=0.05,
+            isomax=0.8,
+            
+            opacityscale=[
+                [0.00, 0.00],
+                [0.05, 0.05],
+                [0.20, 0.15],
+                [0.40, 0.30],
+                [0.60, 0.50],
+                [0.80, 0.80],
+                [1.00, 1.00],
+            ],
+            surface_count=8,
+            colorscale=cmap,
+            showscale=True,
+        )
+    )
+
+    fig.update_layout(
+        scene=dict(
+            xaxis_title="X",
+            yaxis_title="Y",
+            zaxis_title="Z",
+            aspectmode="cube"
+        ),
+        margin=dict(l=0, r=0, t=0, b=0),
+    )
+    fig.show()
+
+def render_3d_movie(volume, t_frames, visualizer, rmax, cam_r=37.0, bh_radius=2.0, linewidth=0.1, fps=20, azimuth=120.0, zenith=np.pi/3, cmap='inferno', normalize=True, output=''):
+    """
+    Args:
+        volumes: np.ndarray, shape (Nens, nt, Nz, Ny, Nx)
+        t_frames: 1D array of length nt
+        visualizer: VolumeVisualizer(width, height, samples)
+        cam_r, rmax, bh_radius, linewidth: camera/render params
+        fps: frames per second for output animation
+    
+    Returns: 
+        FuncAnimation: 3D time dependent movie
+    """
+    from tqdm.auto import tqdm
+    # fix camera once
+    visualizer.set_view(
+        cam_r    = cam_r,
+        domain_r = rmax,
+        azimuth  = azimuth,
+        zenith   = zenith,
+    )
+
+    # render all time-slices
+    imgs = []
+    for i in tqdm(range(len(t_frames)), desc=f"rendering frame"):
+        if normalize:
+            vol = volume[i] / (volume[i].max() + 1e-12)
+        else:
+            vol = volume[i]
+        img = visualizer.render(
+            vol,
+            facewidth = 2*rmax,
+            jit       = True,
+            bh_radius = bh_radius,
+            linewidth = linewidth,
+            cmap      = cmap,
+        ).clip(0,1)
+        imgs.append(img)
+
+    # build animation
+    fig, ax = plt.subplots(figsize=(8,4))
+    im = ax.imshow(imgs[0], origin='lower', vmin=0, vmax=1)
+    norm = plt.Normalize(vmin=0, vmax=1)
+    sm   = plt.cm.ScalarMappable(norm=norm, cmap=cmap)
+    fig.colorbar(sm, ax=ax, fraction=0.046, pad=0.04)
+    ax.axis('off')
+
+    def _update(frame_i):
+        im.set_data(imgs[frame_i])
+        return (im,)
+
+    anim = animation.FuncAnimation(
+        fig, _update, frames=len(imgs), interval=1000/fps
+    )
+
+    if output:
+        anim.save(output, writer='ffmpeg', fps=fps)
+
+    return anim
     

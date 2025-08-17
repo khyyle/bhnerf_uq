@@ -1,0 +1,6 @@
+*.pyc
+__pycache__/
+bhnerf/__pycache__
+.vscode/
+bhnerf.egg-info/
+build/

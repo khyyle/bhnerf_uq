@@ -200,9 +200,13 @@ def velocity_warp_coords(coords, Omega, t_frames, t_start_obs, t_geos, t_injecti
     t_geos = (t_frames - t_start_obs)/GM_c3 + _np.array(t_geos)
     t_M = t_geos - t_injection
     
-    # Insert nans for angles before the injection time
     theta_rot = _np.array(t_M * Omega)
-    theta_rot = _np.where(t_M < 0.0, _np.full_like(theta_rot, fill_value=np.nan), theta_rot)
+    # NOTE: original line: Insert nans for angles before the injection time
+    #theta_rot = _np.where(t_M < 0.0, _np.full_like(theta_rot, fill_value=np.nan), theta_rot)
+    
+    # NOTE: supposed fix for gradients, use for bayesrays
+    import jax
+    theta_rot = _np.where(t_M<0, jax.lax.stop_gradient(jnp.zeros_like(theta_rot)), theta_rot)
 
     inv_rot_matrix = utils.rotation_matrix(rot_axis, -theta_rot, use_jax=use_jax)
         

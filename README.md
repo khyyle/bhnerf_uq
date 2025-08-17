@@ -1,10 +1,7 @@
 # bhnerf + bayesrays
-The uncertainty is computed in `bhnerf/uncertainty`
-This is tested `tutorials/Tutorial 4 - estimate 3D emission` where we take one of the pre trained models from our ensemble and try and do bayesrays on it for one discrete point in time.
+This is a cloned version of bhnerf, authored by Aviad Levis, with an added uncertainty module, `uncertainty.py` un the **bhnerf/** directory. Here, we adapt BayesRays, developed by Goli et al. (2023) to work on this imaging model. 
 
-Repository cloned from Aviad levis
-
-
+In `tutorials`, **Tutorial6** walks through implementing BayesRays to recover uncertainty for one frame. This will be extended to movies. **Tutorial7** walks through rendering uncertainty maps given by a naive ensemble for comparison to BayesRays.
 
 
 # bhnerf
