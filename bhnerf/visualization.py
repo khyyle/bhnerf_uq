@@ -848,14 +848,16 @@ def show_uncert_volume(vol, fov,
     cb.set_label("normalized σ")
     plt.show()
 
-def show_uncert_volume_plotly(std_norm, fov, cmap="Plasma"):
+def show_uncert_volume_plotly(std_norm, fov, 
+    opacityscale=[[0.00, 0.00],[0.05, 0.05],[0.20, 0.15],[0.40, 0.30],[0.60, 0.50],[0.80, 0.80],[1.00, 1.00],]
+    , cmap="Plasma"):
     import plotly.graph_objects as go
 
     Z, Y, X = std_norm.shape
     x = np.linspace(-fov/2, fov/2, X)
     y = np.linspace(-fov/2, fov/2, Y)
     z = np.linspace(-fov/2, fov/2, Z)
-    
+
     Xg, Yg, Zg = np.meshgrid(x, y, z, indexing='xy')
 
     fig = go.Figure(
@@ -868,15 +870,7 @@ def show_uncert_volume_plotly(std_norm, fov, cmap="Plasma"):
             isomin=0.05,
             isomax=0.8,
             
-            opacityscale=[
-                [0.00, 0.00],
-                [0.05, 0.05],
-                [0.20, 0.15],
-                [0.40, 0.30],
-                [0.60, 0.50],
-                [0.80, 0.80],
-                [1.00, 1.00],
-            ],
+            opacityscale=opacityscale,
             surface_count=8,
             colorscale=cmap,
             showscale=True,
@@ -893,6 +887,53 @@ def show_uncert_volume_plotly(std_norm, fov, cmap="Plasma"):
         margin=dict(l=0, r=0, t=0, b=0),
     )
     fig.show()
+
+def render_uncert_volume_plotly(std_norm, fov,
+                                level_norm=(0.00, 0.20, 0.40, 0.60, 0.80, 1.00),
+                                opacity=(0.00, 0.02, 0.05, 0.10, 0.18, 0.28),
+                                cmap="Plasma", surface_count=28, isomin=None, isomax=None, global_opacity=None):
+    import numpy as np
+    import plotly.graph_objects as go
+
+    Xsz, Ysz, Zsz = std_norm.shape
+    xs = np.linspace(-fov/2, fov/2, Xsz)
+    ys = np.linspace(-fov/2, fov/2, Ysz)
+    zs = np.linspace(-fov/2, fov/2, Zsz)
+
+    Xg, Yg, Zg = np.meshgrid(xs, ys, zs, indexing='ij')
+
+    vals = std_norm.ravel(order='C')
+    if isomin is None: isomin = float(vals.min())
+    if isomax is None: isomax = float(vals.max())
+
+    vol_kwargs = dict(
+        x=Xg.ravel(order='C'),
+        y=Yg.ravel(order='C'),
+        z=Zg.ravel(order='C'),
+        value=vals,
+        colorscale=cmap,
+        surface_count=surface_count,
+        isomin=isomin,
+        isomax=isomax,
+        caps=dict(x_show=False, y_show=False, z_show=False),
+    )
+    if global_opacity is not None:
+        vol_kwargs["opacity"] = float(global_opacity)
+
+    if level_norm is not None and opacity is not None: 
+        opacityscale = [[float(l), float(a)] for l, a in zip(level_norm, opacity)]
+        vol_kwargs["opacityscale"] = opacityscale
+
+    fig = go.Figure(go.Volume(**vol_kwargs))
+    fig.update_layout(
+        scene=dict(xaxis_title="X", yaxis_title="Y", zaxis_title="Z", aspectmode="cube"),
+        margin=dict(l=0, r=0, t=0, b=0),
+    )
+    fig.show()
+
+    print("opacityscale used:", fig.data[0].opacityscale)
+    print("isomin/isomax:", fig.data[0].isomin, fig.data[0].isomax)
+    return fig
 
 def render_3d_movie(volume, t_frames, visualizer, rmax, cam_r=37.0, bh_radius=2.0, linewidth=0.1, fps=20, azimuth=120.0, zenith=np.pi/3, cmap='inferno', normalize=True, output=''):
     """

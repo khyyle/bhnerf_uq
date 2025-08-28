@@ -14,59 +14,52 @@ from tqdm.auto import tqdm
 
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 import bhnerf
+from bhnerf import constants as consts
 from ehtim.image import make_square
 from ehtim.imaging import imager_utils as iu
 from astropy import units
 
-
 def build_A_per_frame(obs, t_frames, image_fov_rad, image_size, dtype='vis', pol='I'):
     """
+    Args:
+        obs: Obsdata object for the black hole
+        t_frames: (nt,) astropy quantity array of times for each frame
+        image_fov_rad: image field of view in radians
+        image_size: image size in pixels
+        dtype: chisqdata type
+        pol: polarization type.
+    
     Returns
         target: (nt, Nvis_t, Npol)
         sigma: (nt, Nvis_t, Npol)
         A: (nt, Nvis_t, image_size**2)
     """
-    # 1. split the big Obsdata object into nt shorter chunks
     dt_sec = (t_frames[-1] - t_frames[0]).to('s').value / (len(t_frames) + 1)
     obs_list = obs.split_obs(t_gather=dt_sec)
-
-    # 2. square prior image defines pixel grid
     prior = make_square(obs, image_size, image_fov_rad)
-
     chisq_fn = getattr(iu, f'chisqdata_{dtype}')
 
     targ, sig, A_all = [], [], []
     for ob in obs_list:
-        # one call per (snapshot × Stokes)
         t, s, A = chisq_fn(ob, prior, mask=[], pol=pol)
         targ.append(np.asarray(t))
         sig.append(np.asarray(s))
-        A_all.append(np.asarray(A))         # (Nvis_t, Npix)
-
+        A_all.append(np.asarray(A))
     return (np.stack(targ), np.stack(sig), np.stack(A_all))
 
 def make_forward_model(predictor_apply, predictor_params, t_frame, ray_args, A):
-    t_units = t_frame.unit
-    #t_frame = float(t_frame.value)
     
+    t_units = t_frame.unit
     t_frame    = t_frame
-    Omega      = ray_args['Omega']#[None,...]
-    g          = ray_args['g']#[None,...]
-    dtau       = ray_args['dtau']#[None,...]
-    Sigma      = ray_args['Sigma']#[None,...]
-    t_geos     = ray_args['t_geos']#[None, ...]
+    Omega      = ray_args['Omega']
+    g          = ray_args['g']
+    dtau       = ray_args['dtau']
+    Sigma      = ray_args['Sigma']
+    t_geos     = ray_args['t_geos']
     J          = ray_args['J']
     t_start    = ray_args['t_start_obs']
     t_inj      = ray_args['t_injection']
     t_units    = t_units 
-    
-    print("\n----------single frame params----------")
-    print("Omega:", Omega.shape)
-    print("g:", g.shape)
-    print("dtau: ", dtau.shape)
-    print("Sigma: ", Sigma.shape)
-    print("t_geos: ", t_geos.shape)
-    print("Coords (forward model):", ray_args['coords'].shape)
     
     @jax.jit
     def forward_model(coords):
@@ -142,10 +135,9 @@ def interpolate(coords:jnp.ndarray, grid: jnp.ndarray):
 
 def trilinear_scalar(coords_unit: jnp.ndarray, grid3d: jnp.ndarray) -> jnp.ndarray:
     """coords_unit: (R,R,R,3) in [0,1); grid3d: (R,R,R) -> (R,R,R)"""
-    # If your existing trilinear() needs a channel dim, adapt here but return 3D:
-    grid4 = grid3d[..., None]                  # (R,R,R,1) internal only
-    out4  = trilinear(coords_unit, grid4)      # (R,R,R,1)
-    return out4[..., 0]                        # back to (R,R,R)
+    grid4 = grid3d[..., None]
+    out4  = trilinear(coords_unit, grid4)
+    return out4[..., 0]
 
 def mapcoords_scalar(coords_unit: jnp.ndarray, grid3d: jnp.ndarray) -> jnp.ndarray:
     """coords_unit: (R,R,R,3) in [0,1); grid3d: (R,R,R) -> (R,R,R)"""
@@ -153,16 +145,15 @@ def mapcoords_scalar(coords_unit: jnp.ndarray, grid3d: jnp.ndarray) -> jnp.ndarr
     xi = coords_unit[..., 0] * (R - 1)
     yi = coords_unit[..., 1] * (R - 1)
     zi = coords_unit[..., 2] * (R - 1)
-    idx = jnp.stack([xi, yi, zi], axis=0)      # (3,R,R,R)
+    idx = jnp.stack([xi, yi, zi], axis=0)
     return jax.scipy.ndimage.map_coordinates(grid3d, idx, order=1, mode='nearest')
 
 def _coords_unit_identity(R: int) -> jnp.ndarray:
-    # stay strictly inside the cube so i1 exists
     eps = 1e-7
     xs = jnp.linspace(0.0, 1.0 - eps, R)
     ys = jnp.linspace(0.0, 1.0 - eps, R)
     zs = jnp.linspace(0.0, 1.0 - eps, R)
-    return jnp.stack(jnp.meshgrid(xs, ys, zs, indexing='ij'), axis=-1)  # (R,R,R,3)
+    return jnp.stack(jnp.meshgrid(xs, ys, zs, indexing='ij'), axis=-1)
 
 def interpolation_check_scalar(volume3d: jnp.ndarray, fov: float, title: str = ""):
     """volume3d must be (R,R,R). No channels added; output remains (R,R,R)."""
@@ -202,16 +193,12 @@ def interpolation_check_scalar(volume3d: jnp.ndarray, fov: float, title: str = "
     fig.colorbar(im3, ax=[axs[3], axs[4], axs[5]], shrink=0.75)
     plt.tight_layout(); plt.show()
 
-    # 3D views (each is (R,R,R))
     import bhnerf.visualization as vis
     vis.ipyvolume_3d(np.asarray(volume3d), fov, level=[0.0, 0.2, 0.7])
     vis.ipyvolume_3d(np.asarray(out_tri),  fov, level=[0.0, 0.2, 0.7])
     vis.ipyvolume_3d(np.asarray(out_map),  fov, level=[0.0, 0.2, 0.7])
 
     return np.asarray(out_tri), np.asarray(out_map)
-
-
-    
 
 # replace with jax.scipy.map_coordinates
 # be careful with this function, do sanity checks at diff grid resolutions
@@ -260,13 +247,14 @@ def trilinear(coords: jnp.ndarray, grid: jnp.ndarray, variance: bool = False) ->
     w011 = wx0*wy1*wz1
     w111 = wx1*wy1*wz1
 
-    weights = jnp.stack([w000,w100,w010,w110,w001,w101,w011,w111], axis=-1)  # [..., 8]
-    if variance:
-        # Var = SUM((weight_i)^2 Var_i)
+    weights = jnp.stack([w000,w100,w010,w110,w001,w101,w011,w111], axis=-1)
+    
+    # Var = SUM((weight_i)^2 Var_i)
+    if variance: # interpolate variance w squared weights--technically statistically correct
         weights = weights ** 2
 
     # gather 8 corners
-    def gather(ii, jj, kk):  # [..., C]
+    def gather(ii, jj, kk):
         return grid[ii, jj, kk]
 
     c000 = gather(i0,j0,k0)
@@ -278,10 +266,8 @@ def trilinear(coords: jnp.ndarray, grid: jnp.ndarray, variance: bool = False) ->
     c011 = gather(i0,j1,k1)
     c111 = gather(i1,j1,k1)
 
-    corners = jnp.stack([c000,c100,c010,c110,c001,c101,c011,c111], axis=-2)  # [..., 8, C]
-
-    # weighted sum over the 8 corners
-    out = jnp.sum(corners * weights[..., None], axis=-2)  # [..., C]
+    corners = jnp.stack([c000,c100,c010,c110,c001,c101,c011,c111], axis=-2)
+    out = jnp.sum(corners * weights[..., None], axis=-2)
     return out
 
 def flatten(tree):
@@ -355,7 +341,7 @@ class BayesRaysUncertaintyMapper():
         self.coords_unit = (self.coords/(fov/2.0) + 1.0) * 0.5
         self.coords_unit = jnp.clip(self.coords_unit, 0.0, 1.0 - 1e-7)
 
-        # NOTE: attemp 2. this assumes all coords are within z_width. If they aren't they get clipped to [0,1] range.
+        # NOTE: attempt 2. this assumes all coords are within z_width. If they aren't they get clipped to [0,1] range.
         # I suspect this is why the uncertainty looked like a peanut shape using these unit_coords
 
         #extents = jnp.array([fov/2, fov/2, z_width], dtype=jnp.float32)
@@ -381,29 +367,55 @@ class BayesRaysUncertaintyMapper():
         #clipped = ((self.coords_unit<=1e-6)|(self.coords_unit>=1-1e-6)).mean(axis=(0,1,2,3))
         #print("box center:", center, "box half:", half, "clipped frac per axis:", np.array(clipped))
         
-        
         print("Coords (bayesrays):", self.coords.shape)
         print("Coords min and max:", self.coords.max(), self.coords.min())
         print("Coords unit min, max:", self.coords_unit.max(axis=(0,1,2,3)), self.coords_unit.min(axis=(0,1,2,3)))
         print("Coords unit shape:", self.coords_unit.shape, "Coords shape:", self.coords.shape)
-        
+
+        self.fm_per_frame = []
+        t_units = t_frames.unit
+        t_list  = list(t_frames)
+        A_list  = [jnp.asarray(A[f]) for f in range(len(t_list))]
+
+        for f in range(len(t_list)):
+            t_f = t_list[f]
+            A_f = A_list[f]
+            Omega  = raytracing_args['Omega']
+            g      = raytracing_args['g']
+            dtau   = raytracing_args['dtau']
+            Sigma  = raytracing_args['Sigma']
+            t_geos = raytracing_args['t_geos']
+            J      = raytracing_args['J']
+            t_start= raytracing_args['t_start_obs']
+            t_inj  = raytracing_args['t_injection']
+
+            @jax.jit
+            def fm(coords_f, *, t_f=t_f, A_f=A_f):
+                coords_moved_f = jnp.moveaxis(coords_f, -1, 0)
+                img = bhnerf.network.image_plane_prediction(
+                    predictor_params, predictor_apply,
+                    t_frames    = t_f,
+                    coords      = [coords_moved_f[0], coords_moved_f[1], coords_moved_f[2]],
+                    Omega       = Omega,
+                    J           = J,
+                    g           = g,
+                    dtau        = dtau,
+                    Sigma       = Sigma,
+                    t_start_obs = t_start,
+                    t_geos      = t_geos,
+                    t_injection = t_inj,
+                    t_units     = t_units,
+                )
+                imvec = img.reshape(-1)
+                return A_f @ imvec
+            self.fm_per_frame.append(fm)
     
     def _render_one(self, def_params, k):
-        # try loss across all frames
         offsets = self.def_grid.apply({"params": def_params}, self.coords_unit)
         coords_deformed = self.coords + offsets * self.voxel_world
         vis = self.forward_model(coords_deformed)
         return vis[k]
     
-    def forward_with_deform(self, def_params):
-        """
-        add offset and get updated visibility matrix
-        """
-        offsets = self.def_grid.apply({'params': def_params}, self.coords_unit)
-        return self.forward_model(self.coords + offsets)
-    
-    # think of forward model as velocity propagation + fourier measurements
-    #
     def _fisher_diag_row(self, k, sigma_k):
         def re_fn(def_p): return jnp.real(self._render_one(def_p, k))
         def im_fn(def_p): return jnp.imag(self._render_one(def_p, k))
@@ -468,29 +480,20 @@ class BayesRaysUncertaintyMapper():
             var = trilinear(coords, grid, variance=squared_weights).sum(axis=-1)
         return jnp.asarray(var) 
 
-    def render_uncertainty_3d(self, hessian, covariance: jnp.ndarray, fov: float, level_norm=(0.0, 0.3, 0.6, 0.9), opacity=(0.00, 0.10, 0.45, 0.85), 
-                              cmap: str="plasma", view_kw = dict(azimuth=30, elevation=25, distance=2.8), resolution=64, squared_weights=False, output=False):
-        import ipyvolume as ipv
-        import matplotlib.cm as cm
-        import matplotlib.colors as mcolors
-        import matplotlib.pyplot as plt
-
+    def prep_uncertainty_3d(self, hessian, covariance: jnp.ndarray, 
+                            resolution=64, squared_weights=False, output=False):
         def sigma_volume(V, upres=64):
             """upsample and normalize the uncertainty map"""
             nx, ny, nz = self.grid_res
             grid = V.reshape((nx, ny, nz, 3))
 
-            # build normalized coords in unit cube
             xs = jnp.linspace(0, 1, upres)
             ys = jnp.linspace(0, 1, upres)
             zs = jnp.linspace(0, 1, upres)
 
-            # upsample
             coords = jnp.stack(jnp.meshgrid(xs, ys, zs, indexing='ij'), axis=-1)
             interp = trilinear(coords, grid, variance=squared_weights)
-            var = np.array(jnp.sqrt(jnp.sum(interp, axis=-1)))
-
-            return var
+            return np.array(jnp.sqrt(jnp.sum(interp, axis=-1)))
 
         sigma_vol = sigma_volume(covariance, resolution)
         
@@ -501,11 +504,19 @@ class BayesRaysUncertaintyMapper():
         uncertainty = np.clip(uncertainty, min_uncertainty, max_uncertainty)
         uncertainty = (uncertainty - uncertainty.min()) / (uncertainty.max() - uncertainty.min() + 1e-12)
 
-        emission_estimate = bhnerf.network.sample_3d_grid(self.pred_apply, self.pred_params, fov=fov, resolution=resolution)
+        #emission_estimate = bhnerf.network.sample_3d_grid(self.pred_apply, self.pred_params, fov=fov, resolution=resolution)
         #eps = emission_estimate.max() * 0.001
         #mask = (emission_estimate > eps)
         #uncertainty = np.where(mask, uncertainty, 0.0)
 
+        return uncertainty
+
+    def render_uncertainty_3d_ipv(self, uncertainty, fov, view_kw=dict(azimuth=30, elevation=25, distance=2.8), 
+        level_norm=(0.0, 0.3, 0.6, 0.9), opacity=(0.00, 0.10, 0.45, 0.85), output=False, cmap="plasma"):
+        import ipyvolume as ipv
+        import matplotlib.cm as cm
+        import matplotlib.colors as mcolors
+        import matplotlib.pyplot as plt
         ipv.figure()
         ipv.view(**view_kw)
         v = ipv.volshow(uncertainty, extent=[(-fov/2, fov/2)]*3, memorder="F", controls=True)
@@ -518,7 +529,7 @@ class BayesRaysUncertaintyMapper():
         fig, ax = plt.subplots(figsize=(4, .35))
         norm = mcolors.Normalize(vmin=0, vmax=1)
         cb = plt.colorbar(cm.ScalarMappable(norm=norm, cmap=cmap), cax=ax, orientation='horizontal')
-        cb.set_label("normalized σ")
+        cb.set_label("normalized sigma")
         plt.show()
         
         if output:
@@ -534,18 +545,13 @@ class BayesRaysUncertaintyMapper():
         If include_Omega_grad=True:
             Var_t(x) = σ0^2(w(x;t)) * ||J_w(x,t)^{-1}||_F^2
         """
-        import jax, jax.numpy as jnp
-        from bhnerf import constants as consts
 
-        # grid points in world coords, flattened to [N,3]
         side = jnp.linspace(-fov_M/2, fov_M/2, R, dtype=jnp.float32)
         X, Y, Z = jnp.meshgrid(side, side, side, indexing='ij')
-        pts = jnp.stack([X, Y, Z], axis=-1).reshape(-1, 3)  # [N,3]
+        pts = jnp.stack([X, Y, Z], axis=-1).reshape(-1, 3)
         I3 = jnp.eye(3, dtype=jnp.float32)
 
-        # times -> dimensionless t_M (avoid unit bugs)
         if hasattr(t_frames, "__len__") and len(t_frames) > 0 and hasattr(t_frames[0], "unit"):
-            # Convert to same unit as first entry, then to GM/c^3
             base_u = t_frames[0].unit
             tq = jnp.asarray([float((t - t_frames[0]).to_value(base_u)) for t in t_frames], dtype=jnp.float32)
             GMc3 = consts.GM_c3(consts.sgra_mass).to(base_u).value
@@ -553,14 +559,13 @@ class BayesRaysUncertaintyMapper():
         else:
             tM_all = jnp.asarray(t_frames, dtype=jnp.float32)
 
-        # Keplerian Omega(r) in geometric units
         sgn = jnp.sign(spin + 1e-12)
         Ms = jnp.sqrt(M)
         def omega_of_r(r):
             return sgn * Ms / (r**1.5 + spin * Ms)
 
         def w_point(x: jnp.ndarray, tM: jnp.ndarray) -> jnp.ndarray:
-            coords = x.reshape(3, 1, 1, 1) # (3,1,1,1)
+            coords = x.reshape(3, 1, 1, 1)
             r = jnp.linalg.norm(x) + 1e-12
             Om = omega_of_r(r)
             wc = bhnerf.emission.velocity_warp_coords(
@@ -574,17 +579,15 @@ class BayesRaysUncertaintyMapper():
                 M=M,
                 t_units=None,
                 use_jax=True,
-            ) # -> (1,1,1,3)
+            )
             return wc.reshape(3,)
 
-        # sample sigma_0^2 at y = w(x;t)
-        grid_σ = sigma0_var.astype(jnp.float32)  # (R,R,R)
+        grid_sigma = sigma0_var.astype(jnp.float32)
         def sample_sigma0(y_points: jnp.ndarray) -> jnp.ndarray:
-            u = (y_points / (fov_M/2.0) + 1.0) * 0.5  # map to [0,1]^3
+            u = (y_points / (fov_M/2.0) + 1.0) * 0.5
             u = jnp.clip(u, 0.0, 1.0)
-            return trilinear(u, grid_σ[..., None])[..., 0]
+            return trilinear(u, grid_sigma[..., None])[..., 0]
 
-        # chunked helpers ---------------
         def _batch_map(fn, arr, *extra):
             outs = []
             for i in range(0, arr.shape[0], chunk_pts):
@@ -594,7 +597,6 @@ class BayesRaysUncertaintyMapper():
 
         v_warp = lambda xs, tM: _batch_map(lambda p: w_point(p, tM), xs)
 
-        # full stretch with slow light-gradients via J_w inverse
         if include_Omega_grad:
             jac_w = jax.jit(jax.jacfwd(w_point, argnums=0))
             def stretch_at_point(x, tM):
@@ -606,17 +608,15 @@ class BayesRaysUncertaintyMapper():
         vols = []
         for tM in tM_all:
             y_pts = v_warp(pts, tM)
-            s0 = sample_sigma0(y_pts) # [N]
+            s0 = sample_sigma0(y_pts)
             if include_Omega_grad:
-                stretch = v_stretch(pts, tM) # [N]
+                stretch = v_stretch(pts, tM)
                 var_t = (s0 * stretch).reshape(R, R, R)
             else:
-                # rigid: J is a rotation → ||J||_F^2 = 3
                 var_t = (3.0 * s0).reshape(R, R, R)
             vols.append(var_t)
 
-        return jnp.stack(vols, axis=0)  # (nt, R, R, R)        
-
+        return jnp.stack(vols, axis=0)
 
     def build_emission_movie(self, t_frames, fov_M, R, spin, M=1.0):
         Omega3D = omega_grid_kepler(fov_M=fov_M, R=R, spin=spin, M=M)
@@ -634,6 +634,82 @@ class BayesRaysUncertaintyMapper():
             )
             vols.append(np.asarray(vol))
         return np.stack(vols, axis=0)
+    
+    def delta_theta(self, t_f, f_ref=0):
+        GMc3 = bhnerf.constants.GM_c3(bhnerf.constants.sgra_mass).to(t_f.unit).value
+        t_ref = self.t_frames[f_ref]
+        dt = (t_f - t_ref).to_value(self.t_frames.unit)
+        return dt / GMc3 * self.rt_args['Omega']
+
+    def _make_fisher_batch_for_frame(self, f: int):
+        """Returns a jitted, vmapped fisher diag function for a single frame f.
+        Args:
+        - f (int): frame index
+
+        Returns:
+        - (JitWrapped): The fisher gradient function for frame f, vmapped over rays.
+        """
+        
+        fm_f = self.fm_per_frame[f]
+        voxel_world = self.voxel_world
+
+        #dtheta = self.delta_theta(self.t_frames[f], f_ref=0)
+        #Rinv_f = bhnerf.utils.rotation_matrix([0, 0, -1], -dtheta, use_jax=True)
+
+        def _render_one_ray_f(def_params, ray_idx):
+            offsets = self.def_grid.apply({"params": def_params}, self.coords_unit)
+            #ffsets_T = jnp.moveaxis(offsets_ref, -1, 0)
+            #offsets_preT = jnp.sum(Rinv_f * offsets_T, axis=1)
+            #offsets_pre = jnp.moveaxis(offsets_preT, 0, -1)
+
+            coords_def = self.coords + offsets * voxel_world
+            vis_f = fm_f(coords_def)
+            return vis_f[ray_idx]
+
+        def _fisher_diag_ray_f(ray_idx, sigma_k):
+            def re_fn(dp): return jnp.real(_render_one_ray_f(dp, ray_idx))
+            def im_fn(dp): return jnp.imag(_render_one_ray_f(dp, ray_idx))
+            g_re = flatten(jax.grad(re_fn)(self.def_params))
+            g_im = flatten(jax.grad(im_fn)(self.def_params))
+            w = 1.0 / (sigma_k / jnp.sqrt(2.0))
+            row  = (w**2) * (g_re**2 + g_im**2)
+            active = (jnp.max(g_re**2 + g_im**2) > 1e-20).astype(jnp.int32)
+            return row, active
+
+        return jax.jit(jax.vmap(_fisher_diag_ray_f, in_axes=(0, 0)))
+
+    def compute_hessian_diag_all(self, sigma: jnp.ndarray, batch_size: int = 256):
+        """
+        Compute the diagonal of the Hessian matrix (MAP objective) across all frames
+
+        Args:
+        - Sigma (jnp.ndarray): shape (N_frames, Nvis), noise per visibility for each frame
+        - batch_size (int): the number of rays to vmap over at once
+
+        Returns:
+        - H (jnp.ndarray): Shape (P,) the diagonal of the hessian, where P is the number of parameters the deformation grid
+        - R_eff (int): the number of active rays (have non-zero gradient which intersect w/the bh volume)
+        """
+        nvis = int(sigma.shape[1])
+
+        print("nvis per frame:", nvis, "total:", sigma.shape[0] * sigma.shape[1])
+        H = jnp.zeros((self.P,), dtype=jnp.float32)
+        R_eff = 0
+
+
+        for f in tqdm(range(len(self.t_frames)), desc='frame'):
+            _fisher_batch = self._make_fisher_batch_for_frame(f)
+            for start in tqdm(range(0, nvis, batch_size), desc='iteration', leave=False):
+                end = min(start + batch_size, nvis)
+                ray_idx = jnp.arange(start, end)
+
+                rows, active = _fisher_batch(ray_idx, sigma[f, ray_idx])
+                
+                H += jnp.sum(rows, axis=0)
+                R_eff += int(jnp.sum(active))
+        
+        R_eff = max(R_eff, 1)
+        return H, R_eff
 
 def prepare_unc_for_render(sigma_vol, mask, min_uncertainty=-3.0, max_uncertainty=6.0):
     """
