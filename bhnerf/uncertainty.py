@@ -14,6 +14,10 @@ from tqdm.auto import tqdm
 
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 import bhnerf
+import bhnerf.network
+import importlib
+importlib.reload(bhnerf.network)
+import bhnerf.network
 from bhnerf import constants as consts
 from ehtim.image import make_square
 from ehtim.imaging import imager_utils as iu
@@ -319,7 +323,8 @@ def make_coords_unit(coords, margin=1.01, eps=1e-6):
 # for ex 1st frame, can make a movie using the coordinate changes, but to get back to first frame, do inverse of operation it takes to get from 2nd to 1st frame and repeat bayesrays?
 
 class BayesRaysUncertaintyMapper():
-    def __init__(self, predictor_apply: Callable, predictor_params, forward_model: Callable, raytracing_args: dict, t_frames: jnp.ndarray, A, fov, z_width, grid_res: tuple=(64, 64, 64), lam: float=1e-4/(64**3)):
+    def __init__(self, predictor_apply: Callable, predictor_params, raytracing_args: dict, t_frames: jnp.ndarray, 
+                 frames_to_include: list[int], A, sigma, fov, grid_res: tuple=(64, 64, 64), lam: float=1e-4/(64**3)):
         self.P = 3 * grid_res[0] * grid_res[1] * grid_res[2]
         self.grid_res = grid_res
         self.lam = lam
@@ -329,10 +334,11 @@ class BayesRaysUncertaintyMapper():
         self.def_grid = DeformationGrid(grid_res)
 
         self.def_params = self.def_grid.init(jax.random.PRNGKey(0), jnp.zeros((1, 3)))['params']
-        self.forward_model = forward_model
         self.rt_args = raytracing_args
         self.t_frames = t_frames
-        self.A = jnp.array(A)
+        
+        self.A = A
+        self.sigma = sigma
         
         self.coords = jnp.stack(raytracing_args["coords"], axis=-1)
 
@@ -374,12 +380,10 @@ class BayesRaysUncertaintyMapper():
 
         self.fm_per_frame = []
         t_units = t_frames.unit
-        t_list  = list(t_frames)
-        A_list  = [jnp.asarray(A[f]) for f in range(len(t_list))]
+        t_list = [t_frames[i] for i in frames_to_include]
+        A_list  = [jnp.asarray(A[i]) for i in frames_to_include]
 
-        for f in range(len(t_list)):
-            t_f = t_list[f]
-            A_f = A_list[f]
+        for t_f, A_f in zip(t_list, A_list):
             Omega  = raytracing_args['Omega']
             g      = raytracing_args['g']
             dtau   = raytracing_args['dtau']
@@ -405,10 +409,13 @@ class BayesRaysUncertaintyMapper():
                     t_geos      = t_geos,
                     t_injection = t_inj,
                     t_units     = t_units,
+                    stop_grad   = True
                 )
                 imvec = img.reshape(-1)
                 return A_f @ imvec
             self.fm_per_frame.append(fm)
+        
+        self.nvis = int(len(self.fm_per_frame) * sigma.shape[1])
     
     def _render_one(self, def_params, k):
         offsets = self.def_grid.apply({"params": def_params}, self.coords_unit)
@@ -435,13 +442,12 @@ class BayesRaysUncertaintyMapper():
         """
         sigma : (N_vis,)  noise per visibility (same epoch)
         """
-        nvis = int(sigma.shape[0])
         H = jnp.zeros((self.P,), dtype=jnp.float32)
         R_eff = 0
 
         _fisher_batch = jax.jit(jax.vmap(self._fisher_diag_row, in_axes=(0,0)))
-        for start in tqdm(range(0, nvis, batch_size), desc='iteration'):
-            end = min(start + batch_size, nvis)
+        for start in tqdm(range(0, self.nvis, batch_size), desc='iteration'):
+            end = min(start + batch_size, self.nvis)
             idx = jnp.arange(start, end)
             rows, active = _fisher_batch(idx, sigma[idx])
             H += jnp.sum(rows, axis=0)
@@ -450,9 +456,9 @@ class BayesRaysUncertaintyMapper():
         R_eff = max(R_eff, 1)
         return H, R_eff
 
-    def get_covariance(self, H:jnp.array, nvis: int):
+    def get_covariance(self, H:jnp.array):
         print(f"computing covariance matrix with lambda: {self.lam}")
-        return 1/(H/nvis + 2 * self.lam)
+        return 1/(H/self.nvis + 2 * self.lam)
     
     def covariance_to_sigma(self, V):
         """
@@ -480,20 +486,23 @@ class BayesRaysUncertaintyMapper():
             var = trilinear(coords, grid, variance=squared_weights).sum(axis=-1)
         return jnp.asarray(var) 
 
-    def prep_uncertainty_3d(self, hessian, covariance: jnp.ndarray, 
-                            resolution=64, squared_weights=False, output=False):
+    def prep_uncertainty_3d(self, hessian, covariance: jnp.ndarray, fov,
+                            resolution=64, mask=False, squared_weights=False, output=False):
         def sigma_volume(V, upres=64):
             """upsample and normalize the uncertainty map"""
             nx, ny, nz = self.grid_res
             grid = V.reshape((nx, ny, nz, 3))
 
-            xs = jnp.linspace(0, 1, upres)
-            ys = jnp.linspace(0, 1, upres)
-            zs = jnp.linspace(0, 1, upres)
+         
+            if upres > nx:
+                print('upsampling')
+                xs = jnp.linspace(0, 1, upres)
+                ys = jnp.linspace(0, 1, upres)
+                zs = jnp.linspace(0, 1, upres)
 
-            coords = jnp.stack(jnp.meshgrid(xs, ys, zs, indexing='ij'), axis=-1)
-            interp = trilinear(coords, grid, variance=squared_weights)
-            return np.array(jnp.sqrt(jnp.sum(interp, axis=-1)))
+                coords = jnp.stack(jnp.meshgrid(xs, ys, zs, indexing='ij'), axis=-1)
+                grid = trilinear(coords, grid, variance=squared_weights)
+            return np.array(jnp.sqrt(jnp.sum(grid, axis=-1)))
 
         sigma_vol = sigma_volume(covariance, resolution)
         
@@ -504,10 +513,11 @@ class BayesRaysUncertaintyMapper():
         uncertainty = np.clip(uncertainty, min_uncertainty, max_uncertainty)
         uncertainty = (uncertainty - uncertainty.min()) / (uncertainty.max() - uncertainty.min() + 1e-12)
 
-        #emission_estimate = bhnerf.network.sample_3d_grid(self.pred_apply, self.pred_params, fov=fov, resolution=resolution)
-        #eps = emission_estimate.max() * 0.001
-        #mask = (emission_estimate > eps)
-        #uncertainty = np.where(mask, uncertainty, 0.0)
+        if mask:
+            emission_estimate = bhnerf.network.sample_3d_grid(self.pred_apply, self.pred_params, fov=fov, resolution=resolution)
+            eps = emission_estimate.max() * 0.001
+            mask = (emission_estimate > eps)
+            uncertainty = np.where(mask, uncertainty, 0.0)
 
         return uncertainty
 
@@ -690,17 +700,15 @@ class BayesRaysUncertaintyMapper():
         - H (jnp.ndarray): Shape (P,) the diagonal of the hessian, where P is the number of parameters the deformation grid
         - R_eff (int): the number of active rays (have non-zero gradient which intersect w/the bh volume)
         """
-        nvis = int(sigma.shape[1])
-
-        print("nvis per frame:", nvis, "total:", sigma.shape[0] * sigma.shape[1])
+        nvis_f = int(self.nvis/len(self.fm_per_frame))
+        print("nvis per frame:", nvis_f, "total:", self.nvis)
         H = jnp.zeros((self.P,), dtype=jnp.float32)
         R_eff = 0
 
-
-        for f in tqdm(range(len(self.t_frames)), desc='frame'):
+        for f in tqdm(range(len(self.fm_per_frame)), desc='frame'):
             _fisher_batch = self._make_fisher_batch_for_frame(f)
-            for start in tqdm(range(0, nvis, batch_size), desc='iteration', leave=False):
-                end = min(start + batch_size, nvis)
+            for start in tqdm(range(0, nvis_f, batch_size), desc='iteration', leave=False):
+                end = min(start + batch_size, self.nvis)
                 ray_idx = jnp.arange(start, end)
 
                 rows, active = _fisher_batch(ray_idx, sigma[f, ray_idx])
@@ -741,4 +749,4 @@ def omega_grid_kepler(fov_M: float, R: int, spin: float, M: float = 1.0) -> np.n
     r = np.sqrt(X*X + Y*Y + Z*Z) + 1e-12
     sgn = np.sign(spin + 1e-12)
     Ms  = np.sqrt(M).astype(np.float32)
-    return (sgn * Ms / (r**1.5 + spin * Ms)).astype(np.float32)  # (R,R,R)
+    return (sgn * Ms / (r**1.5 + spin * Ms)).astype(np.float32)  

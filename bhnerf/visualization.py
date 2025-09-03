@@ -848,45 +848,116 @@ def show_uncert_volume(vol, fov,
     cb.set_label("normalized σ")
     plt.show()
 
-def show_uncert_volume_plotly(std_norm, fov, 
-    opacityscale=[[0.00, 0.00],[0.05, 0.05],[0.20, 0.15],[0.40, 0.30],[0.60, 0.50],[0.80, 0.80],[1.00, 1.00],]
-    , cmap="Plasma"):
+def render_volumes_plotly(volumes_norm, fov, titles=None,
+                              colorscale="Plasma",
+                              surface_count=10,
+                              percentiles=(0.5, 80),
+                              opacityscale=[[0.00, 0.00],[0.05, 0.05],[0.20, 0.15],[0.40, 0.30],[0.60, 0.50],[0.80, 0.80],[1.00, 1.00]],
+                              global_opacity=None, interactive_sync=False):
+    """
+    Args
+    ----
+
+    volumes_norm: list 
+        list of volumes to render
+    fov: float
+        field of view
+    titles: list[str]
+        list of title to set for each volume in volumes_norm
+    surface_count: int
+        the number of isosurfaces to draw
+    percentiles: tuple(float, float)
+        isomin and isomax percentiles
+    opacityscale: list[list(float, float)] 
+        opacity scale to render on. Can also be set to None
+    global_opacity: float
+        global multiplier for opacity
+    interactive_sync:
+        if multiple volumes, syncs camera movements across the two
+
+    """
     import plotly.graph_objects as go
+    import plotly.subplots
+    assert len(volumes_norm) >= 1, "Need at least one volume"
+    R_x, R_y, R_z = volumes_norm[0].shape
+    for v in volumes_norm[1:]:
+        assert v.shape == (R_x, R_y, R_z), "All volumes must have same shape"
 
-    Z, Y, X = std_norm.shape
-    x = np.linspace(-fov/2, fov/2, X)
-    y = np.linspace(-fov/2, fov/2, Y)
-    z = np.linspace(-fov/2, fov/2, Z)
+    xs = np.linspace(-fov/2, fov/2, R_x)
+    ys = np.linspace(-fov/2, fov/2, R_y)
+    zs = np.linspace(-fov/2, fov/2, R_z)
+    Xg, Yg, Zg = np.meshgrid(xs, ys, zs, indexing="ij")
 
-    Xg, Yg, Zg = np.meshgrid(x, y, z, indexing='xy')
+    n = len(volumes_norm)
+    if titles is None: titles = [f"Vol {i+1}" for i in range(n)]
+    assert len(titles) == n
 
-    fig = go.Figure(
-        data=go.Volume(
-            x=Xg.flatten(),
-            y=Yg.flatten(),
-            z=Zg.flatten(),
-            value=std_norm.flatten(),
-    
-            isomin=0.05,
-            isomax=0.8,
-            
-            opacityscale=opacityscale,
-            surface_count=8,
-            colorscale=cmap,
-            showscale=True,
+    ctor = go.FigureWidget if interactive_sync else go.Figure
+    fig = ctor(plotly.subplots.make_subplots(
+        rows=1, cols=n,
+        specs=[[{'type': 'scene'} for _ in range(n)]],
+        subplot_titles=titles
+    ))
+
+    cam = dict(up=dict(x=0, y=0, z=1),
+               center=dict(x=0, y=0, z=0),
+               eye=dict(x=1.35, y=1.35, z=1.35))
+
+    for i, vol in enumerate(volumes_norm):
+        vals = np.asarray(vol, dtype=float).ravel(order='C')
+
+        lo, hi = np.percentile(vals, percentiles)
+        vol_kwargs = dict(
+            x=Xg.ravel(order='C'),
+            y=Yg.ravel(order='C'),
+            z=Zg.ravel(order='C'),
+            value=vals,
+            colorscale=colorscale,
+            surface_count=surface_count,
+            isomin=float(lo),
+            isomax=float(hi),
+            caps=dict(x_show=False, y_show=False, z_show=False)
         )
-    )
+        if global_opacity is not None:
+            vol_kwargs["opacity"] = float(global_opacity)
+        if opacityscale is not None:
+            vol_kwargs["opacityscale"] = opacityscale
 
-    fig.update_layout(
-        scene=dict(
-            xaxis_title="X",
-            yaxis_title="Y",
-            zaxis_title="Z",
-            aspectmode="cube"
-        ),
-        margin=dict(l=0, r=0, t=0, b=0),
-    )
-    fig.show()
+        fig.add_trace(go.Volume(**vol_kwargs), row=1, col=i+1)
+
+        scene_key = 'scene' if i == 0 else f'scene{i+1}'
+        fig.update_layout(**{
+            scene_key: dict(
+                xaxis_title="X", yaxis_title="Y", zaxis_title="Z",
+                aspectmode="cube",
+                camera=cam
+            )
+        })
+    for i in range(n):
+        scene_key = 'scene' if i == 0 else f'scene{i+1}'
+        domain_x0, domain_x1 = fig.layout[scene_key].domain.x
+        cb_x = domain_x1 + 0.02
+        tr = fig.data[i]
+        tr.colorbar = dict(x=cb_x, len=0.85, tickformat=".3g", outlinewidth=0)
+
+    fig.update_layout(margin=dict(l=0, r=0, t=40, b=0))
+
+    if interactive_sync:
+        # FIXME: doesnt error, but kills kernel when i try to display with IPython.display's display() and gives backend error
+        scenes = ['scene'] + [f'scene{i+1}' for i in range(1, n)]
+        _sync_flag = {'busy': False}
+        def make_cb(src_scene):
+            def _cb(scene, camera):
+                if _sync_flag['busy']: return
+                _sync_flag['busy'] = True
+                for s in scenes:
+                    if s != src_scene:
+                        getattr(fig.layout, s).camera = camera
+                _sync_flag['busy'] = False
+            return _cb
+        for s in scenes:
+            getattr(fig.layout, s).on_change(make_cb(s), 'camera')
+    return fig
 
 def render_uncert_volume_plotly(std_norm, fov,
                                 level_norm=(0.00, 0.20, 0.40, 0.60, 0.80, 1.00),
@@ -935,7 +1006,7 @@ def render_uncert_volume_plotly(std_norm, fov,
     print("isomin/isomax:", fig.data[0].isomin, fig.data[0].isomax)
     return fig
 
-def render_3d_movie(volume, t_frames, visualizer, rmax, cam_r=37.0, bh_radius=2.0, linewidth=0.1, fps=20, azimuth=120.0, zenith=np.pi/3, cmap='inferno', normalize=True, output=''):
+def render_3d_movie(volume, t_frames, visualizer, rmax, cam_r=37.0, bh_radius=2.0, linewidth=0.1, fps=20, azimuth=0, zenith=np.pi/3, cmap='inferno', normalize=True, output=''):
     """
     Args:
         volumes: np.ndarray, shape (Nens, nt, Nz, Ny, Nx)
@@ -948,7 +1019,6 @@ def render_3d_movie(volume, t_frames, visualizer, rmax, cam_r=37.0, bh_radius=2.
         FuncAnimation: 3D time dependent movie
     """
     from tqdm.auto import tqdm
-    # fix camera once
     visualizer.set_view(
         cam_r    = cam_r,
         domain_r = rmax,
@@ -956,7 +1026,6 @@ def render_3d_movie(volume, t_frames, visualizer, rmax, cam_r=37.0, bh_radius=2.
         zenith   = zenith,
     )
 
-    # render all time-slices
     imgs = []
     for i in tqdm(range(len(t_frames)), desc=f"rendering frame"):
         if normalize:
@@ -973,7 +1042,6 @@ def render_3d_movie(volume, t_frames, visualizer, rmax, cam_r=37.0, bh_radius=2.
         ).clip(0,1)
         imgs.append(img)
 
-    # build animation
     fig, ax = plt.subplots(figsize=(8,4))
     im = ax.imshow(imgs[0], origin='lower', vmin=0, vmax=1)
     norm = plt.Normalize(vmin=0, vmax=1)
