@@ -848,12 +848,12 @@ def show_uncert_volume(vol, fov,
     cb.set_label("normalized σ")
     plt.show()
 
-def render_volumes_plotly(volumes_norm, fov, titles=None,
-                              colorscale="Plasma",
-                              surface_count=10,
-                              percentiles=(0.5, 80),
-                              opacityscale=[[0.00, 0.00],[0.05, 0.05],[0.20, 0.15],[0.40, 0.30],[0.60, 0.50],[0.80, 0.80],[1.00, 1.00]],
-                              global_opacity=None, interactive_sync=False):
+def render_volumes_plotly(volumes_norm, fov, percentiles: list[tuple[float, float]],
+                          titles=None,
+                          colorscale="Plasma",
+                          surface_count=10,
+                          opacityscale=[[0.00, 0.00],[0.05, 0.05],[0.20, 0.15],[0.40, 0.30],[0.60, 0.50],[0.80, 0.80],[1.00, 1.00]],
+                          global_opacity=None, interactive_sync=False):
     """
     Args
     ----
@@ -906,7 +906,7 @@ def render_volumes_plotly(volumes_norm, fov, titles=None,
     for i, vol in enumerate(volumes_norm):
         vals = np.asarray(vol, dtype=float).ravel(order='C')
 
-        lo, hi = np.percentile(vals, percentiles)
+        lo, hi = np.percentile(vals, percentiles[i])
         vol_kwargs = dict(
             x=Xg.ravel(order='C'),
             y=Yg.ravel(order='C'),

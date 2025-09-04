@@ -52,7 +52,6 @@ def build_A_per_frame(obs, t_frames, image_fov_rad, image_size, dtype='vis', pol
     return (np.stack(targ), np.stack(sig), np.stack(A_all))
 
 def make_forward_model(predictor_apply, predictor_params, t_frame, ray_args, A):
-    
     t_units = t_frame.unit
     t_frame    = t_frame
     Omega      = ray_args['Omega']
@@ -89,78 +88,30 @@ def make_forward_model(predictor_apply, predictor_params, t_frame, ray_args, A):
         return vis
     return forward_model
 
-def trilinear_no_var(coords: jnp.ndarray, grid: jnp.ndarray) -> jnp.ndarray:
-    """Trilinear interpolation into *grid* at **normalised** 3-D *coords*.
-
-    Parameters
-    ----------
-    coords: [..., 3] float32 in [0,1] cube
-    grid: [gx, gy, gz, C]
-
-    Returns
-    -------
-    values : [..., C]
-    """
-    gx, gy, gz, _ = grid.shape
-    x = coords[..., 0] * (gx - 1)
-    y = coords[..., 1] * (gy - 1)
-    z = coords[..., 2] * (gz - 1)
-
-    i0, j0, k0 = jnp.floor(x).astype(jnp.int32), jnp.floor(y).astype(jnp.int32), jnp.floor(z).astype(jnp.int32)
-    i1, j1, k1 = jnp.clip(i0 + 1, 0, gx - 1), jnp.clip(j0 + 1, 0, gy - 1), jnp.clip(k0 + 1, 0, gz - 1)
-
-    wx, wy, wz = x - i0, y - j0, z - k0
-
-    def gather(ii, jj, kk):
-        return grid[ii, jj, kk]
-
-    # 8 vertices
-    c000 = gather(i0, j0, k0)
-    c100 = gather(i1, j0, k0)
-    c010 = gather(i0, j1, k0)
-    c110 = gather(i1, j1, k0)
-    c001 = gather(i0, j0, k1)
-    c101 = gather(i1, j0, k1)
-    c011 = gather(i0, j1, k1)
-    c111 = gather(i1, j1, k1)
-
-    c00 = c000 * (1 - wx)[..., None] + c100 * wx[..., None]
-    c01 = c001 * (1 - wx)[..., None] + c101 * wx[..., None]
-    c10 = c010 * (1 - wx)[..., None] + c110 * wx[..., None]
-    c11 = c011 * (1 - wx)[..., None] + c111 * wx[..., None]
-
-    c0 = c00 * (1 - wy)[..., None] + c10 * wy[..., None]
-    c1 = c01 * (1 - wy)[..., None] + c11 * wy[..., None]
-
-    return c0 * (1 - wz)[..., None] + c1 * wz[..., None]
-
-def interpolate(coords:jnp.ndarray, grid: jnp.ndarray):
-    return jax.scipy.ndimage.map_coordinates(grid, coords, order=1, mode='nearest')
-
-def trilinear_scalar(coords_unit: jnp.ndarray, grid3d: jnp.ndarray) -> jnp.ndarray:
-    """coords_unit: (R,R,R,3) in [0,1); grid3d: (R,R,R) -> (R,R,R)"""
-    grid4 = grid3d[..., None]
-    out4  = trilinear(coords_unit, grid4)
-    return out4[..., 0]
-
-def mapcoords_scalar(coords_unit: jnp.ndarray, grid3d: jnp.ndarray) -> jnp.ndarray:
-    """coords_unit: (R,R,R,3) in [0,1); grid3d: (R,R,R) -> (R,R,R)"""
-    R = grid3d.shape[0]
-    xi = coords_unit[..., 0] * (R - 1)
-    yi = coords_unit[..., 1] * (R - 1)
-    zi = coords_unit[..., 2] * (R - 1)
-    idx = jnp.stack([xi, yi, zi], axis=0)
-    return jax.scipy.ndimage.map_coordinates(grid3d, idx, order=1, mode='nearest')
-
-def _coords_unit_identity(R: int) -> jnp.ndarray:
-    eps = 1e-7
-    xs = jnp.linspace(0.0, 1.0 - eps, R)
-    ys = jnp.linspace(0.0, 1.0 - eps, R)
-    zs = jnp.linspace(0.0, 1.0 - eps, R)
-    return jnp.stack(jnp.meshgrid(xs, ys, zs, indexing='ij'), axis=-1)
-
 def interpolation_check_scalar(volume3d: jnp.ndarray, fov: float, title: str = ""):
     """volume3d must be (R,R,R). No channels added; output remains (R,R,R)."""
+
+    def trilinear_scalar(coords_unit: jnp.ndarray, grid3d: jnp.ndarray) -> jnp.ndarray:
+        """coords_unit: (R,R,R,3) in [0,1); grid3d: (R,R,R) -> (R,R,R)"""
+        grid4 = grid3d[..., None]
+        out4  = trilinear(coords_unit, grid4)
+        return out4[..., 0]
+
+    def mapcoords_scalar(coords_unit: jnp.ndarray, grid3d: jnp.ndarray) -> jnp.ndarray:
+        """coords_unit: (R,R,R,3) in [0,1); grid3d: (R,R,R) -> (R,R,R)"""
+        R = grid3d.shape[0]
+        xi = coords_unit[..., 0] * (R - 1)
+        yi = coords_unit[..., 1] * (R - 1)
+        zi = coords_unit[..., 2] * (R - 1)
+        idx = jnp.stack([xi, yi, zi], axis=0)
+        return jax.scipy.ndimage.map_coordinates(grid3d, idx, order=1, mode='nearest')
+
+    def _coords_unit_identity(R: int) -> jnp.ndarray:
+        eps = 1e-7
+        xs = jnp.linspace(0.0, 1.0 - eps, R)
+        ys = jnp.linspace(0.0, 1.0 - eps, R)
+        zs = jnp.linspace(0.0, 1.0 - eps, R)
+        return jnp.stack(jnp.meshgrid(xs, ys, zs, indexing='ij'), axis=-1)
     import matplotlib.pyplot as plt
     if volume3d.ndim != 3:
         raise ValueError("Pass a scalar volume shaped (R, R, R).")
@@ -204,9 +155,7 @@ def interpolation_check_scalar(volume3d: jnp.ndarray, fov: float, title: str = "
 
     return np.asarray(out_tri), np.asarray(out_map)
 
-# replace with jax.scipy.map_coordinates
-# be careful with this function, do sanity checks at diff grid resolutions
-def trilinear(coords: jnp.ndarray, grid: jnp.ndarray, variance: bool = False) -> jnp.ndarray:
+def trilinear_old(coords: jnp.ndarray, grid: jnp.ndarray, variance: bool = False) -> jnp.ndarray:
     """
     Trilinear interpolation into grid at normalized 3-D *coords*.
 
@@ -241,7 +190,6 @@ def trilinear(coords: jnp.ndarray, grid: jnp.ndarray, variance: bool = False) ->
     j0,j1,wy0,wy1 = _index_and_weights(coords[...,1], gy)
     k0,k1,wz0,wz1 = _index_and_weights(coords[...,2], gz)
 
-    # 8 barycentric weights
     w000 = wx0*wy0*wz0 
     w100 = wx1*wy0*wz0
     w010 = wx0*wy1*wz0
@@ -257,7 +205,6 @@ def trilinear(coords: jnp.ndarray, grid: jnp.ndarray, variance: bool = False) ->
     if variance: # interpolate variance w squared weights--technically statistically correct
         weights = weights ** 2
 
-    # gather 8 corners
     def gather(ii, jj, kk):
         return grid[ii, jj, kk]
 
@@ -273,6 +220,19 @@ def trilinear(coords: jnp.ndarray, grid: jnp.ndarray, variance: bool = False) ->
     corners = jnp.stack([c000,c100,c010,c110,c001,c101,c011,c111], axis=-2)
     out = jnp.sum(corners * weights[..., None], axis=-2)
     return out
+
+def trilinear(coords_unit: jnp.ndarray, grid: jnp.ndarray, variance=None) -> jnp.ndarray:
+    nx, ny, nz, C = grid.shape
+    xi = coords_unit[..., 0] * (nx - 1)
+    yi = coords_unit[..., 1] * (ny - 1)
+    zi = coords_unit[..., 2] * (nz - 1)
+    idx = jnp.stack([xi, yi, zi], axis=0)
+
+    grid_c_first = jnp.moveaxis(grid, -1, 0)
+    def interp_one(g):
+        return jax.scipy.ndimage.map_coordinates(g, idx, order=1, cval=0.)
+    out = jax.vmap(interp_one, in_axes=0)(grid_c_first)
+    return jnp.moveaxis(out, 0, -1)
 
 def flatten(tree):
     return jnp.concatenate([t.ravel() for t in jax.tree_util.tree_leaves(tree)])
@@ -346,6 +306,8 @@ class BayesRaysUncertaintyMapper():
         # flat blob.
         self.coords_unit = (self.coords/(fov/2.0) + 1.0) * 0.5
         self.coords_unit = jnp.clip(self.coords_unit, 0.0, 1.0 - 1e-7)
+        xyz_half = jnp.max(jnp.abs(self.coords), axis=(0,1,2))
+        self.voxel_world = (2.0 * xyz_half) / (jnp.array(self.grid_res) - 1.0)
 
         # NOTE: attempt 2. this assumes all coords are within z_width. If they aren't they get clipped to [0,1] range.
         # I suspect this is why the uncertainty looked like a peanut shape using these unit_coords
@@ -366,10 +328,145 @@ class BayesRaysUncertaintyMapper():
         #self.coords_unit, center, half = make_coords_unit(self.coords, margin=1.01, eps=1e-6)
         
         # NOTE: attempt 4 with adjusting the coordinates. still doesnt work
-        #self.coords_unit, center, half = make_coords_unit_weighted(self.coords, self.rt_args['g'], self.rt_args['dtau'], keep=0.99, margin=1.01, eps=1e-6)
+        #self.coords_unit, center, half = make_coords_unit_weighted(self.coords, self.rt_args['g'], self.rt_args['dtau'], keep=0.995, margin=1.07, eps=1e-6)
+        #R = jnp.array(self.grid_res, dtype=jnp.float32)
+        #self.voxel_world = (2.0 * half) / (R - 1.0)
+
+        # NOTE: attempt 5
+        '''
+        def build_unit_box_weighted(coords, g, dtau, Sigma=None,
+                            qlo=0.02, qhi=0.98, margin=1.02):
+            w = g * dtau if (Sigma is None or jnp.isscalar(Sigma)) else (g * dtau * Sigma)
+            w = w.ravel()
+            support = jnp.sum(w > 0) / (w.size + 1e-12)
+
+            # Fallback to unweighted min/max if weights are too concentrated
+            if support < 1e-3:   # tune threshold if needed
+                reduce_axes = tuple(range(coords.ndim - 1))
+                xyz_min = jnp.min(coords, axis=reduce_axes)
+                xyz_max = jnp.max(coords, axis=reduce_axes)
+                center  = 0.5 * (xyz_min + xyz_max)
+                half    = jnp.maximum(0.5 * (xyz_max - xyz_min), 1e-6) * margin
+            else:
+                def _wq(x, w, q):
+                    idx = jnp.argsort(x); x = x[idx]; w = w[idx]
+                    c = jnp.cumsum(w); c = c / (c[-1] + 1e-12)
+                    return jnp.interp(q, c, x)
+
+                x = coords[...,0].ravel(); y = coords[...,1].ravel(); z = coords[...,2].ravel()
+                w = w / (jnp.sum(w) + 1e-12)
+                lo = jnp.array([_wq(x,w,qlo), _wq(y,w,qlo), _wq(z,w,qlo)])
+                hi = jnp.array([_wq(x,w,qhi), _wq(y,w,qhi), _wq(z,w,qhi)])
+                center = 0.5*(lo+hi); half = jnp.maximum(0.5*(hi-lo), 1e-6) * margin
+
+            u = ((coords - center) / half) * 0.5 + 0.5
+            u = jnp.clip(u, 1e-6, 1.0 - 1e-6)
+            return u, center, half
+
+
+        self.coords_unit, center, half = build_unit_box_weighted(
+            self.coords, self.rt_args['g'], self.rt_args['dtau'],
+            Sigma=self.rt_args.get('Sigma', None),
+            qlo=0.01, qhi=0.99, margin=1.02
+        ))
+
+
+        R = jnp.array(self.grid_res, dtype=jnp.float32)
+        self.voxel_world = (2.0 * half) / (R - 1.0)
+        '''
+
+        # NOTE: attempt 6
+        def make_coords_unit_like_emission_grid(coords, fov_M, grid_res):
+            fov = jnp.array([fov_M, fov_M, fov_M], dtype=jnp.float32)
+            npix = jnp.array(grid_res, dtype=jnp.float32)
+            img_idx = bhnerf.utils.world_to_image_coords(coords, fov=fov, npix=npix, use_jax=True)
+            u = img_idx / (npix - 1.0)
+            u = jnp.clip(u, 1e-6, 1.0 - 1e-6)
+            voxel_world = fov / (npix - 1.0)
+            return u, voxel_world
+        #self.coords_unit, self.voxel_world = make_coords_unit_like_emission_grid(
+        #    self.coords, fov_M=fov, grid_res=self.grid_res
+        #)
+
+        #NOTE: attempt 7:
+        def make_coords_unit_emission_constrained(coords, fov_xy, grid_res,
+                                                g=None, dtau=None,
+                                                qlo=0.01, qhi=0.99,
+                                                margin=1.10,
+                                                half_min=(1.0, 1.0, 0.75)):  # M units
+            """
+            - x,y use the known ±fov_xy/2 cube.
+            - z extent/center are estimated from the subset of samples with |x|,|y| <= fov_xy/2,
+            using weighted quantiles (g*dtau) if provided.
+            """
+            import numpy as np
+            coords_np = np.asarray(coords)            # (Nx,Ny,Ns,3)
+            x, y, z = [coords_np[..., i] for i in range(3)]
+
+            # restrict to the x–y footprint of the emission cube
+            in_xy = (np.abs(x) <= fov_xy/2) & (np.abs(y) <= fov_xy/2)
+            z_sel = z[in_xy]
+            if (g is not None) and (dtau is not None):
+                w = np.asarray(g * dtau)[in_xy].reshape(-1)
+                w = np.clip(w, 0, None); 
+                if w.sum() > 0: w = w / (w.sum() + 1e-12)
+            else:
+                w = None
+
+            # robust z center/half from quantiles
+            if z_sel.size > 0:
+                z_flat = z_sel.reshape(-1)
+                if (w is not None) and (w.size == z_flat.size):
+                    # weighted quantiles
+                    idx = np.argsort(z_flat)
+                    z_sorted = z_flat[idx]; w_sorted = w[idx]
+                    cdf = np.cumsum(w_sorted); cdf /= (cdf[-1] + 1e-12)
+                    z_lo = np.interp(qlo, cdf, z_sorted)
+                    z_hi = np.interp(qhi, cdf, z_sorted)
+                else:
+                    z_lo, z_hi = np.quantile(z_flat, [qlo, qhi])
+                z_ctr  = 0.5*(z_lo + z_hi)
+                z_half = max(0.5*(z_hi - z_lo)*margin, half_min[2])
+            else:
+                # fallback
+                z_ctr, z_half = 0.0, max(fov_xy/2, half_min[2])
+
+            # x,y center/half are fixed by the known FOV
+            x_ctr = y_ctr = 0.0
+            x_half = max(fov_xy/2, half_min[0])
+            y_half = max(fov_xy/2, half_min[1])
+
+            ctr  = np.array([x_ctr, y_ctr, z_ctr], dtype=np.float32)
+            half = np.array([x_half, y_half, z_half], dtype=np.float32)
+
+            u = ((coords_np - ctr) / half) * 0.5 + 0.5
+            u = np.clip(u, 1e-6, 1.0 - 1e-6)
+
+            R = np.array(grid_res, dtype=np.float32)
+            voxel_world = (2.0 * half) / (R - 1.0)
+            return jnp.asarray(u), jnp.asarray(voxel_world), jnp.asarray(ctr), jnp.asarray(half)
+
+        self.coords_unit, self.voxel_world, self.box_center, self.box_half = \
+            make_coords_unit_emission_constrained(self.coords, fov_xy=float(fov),
+                                                grid_res=self.grid_res,
+                                                g=self.rt_args.get('g', None),
+                                                dtau=self.rt_args.get('dtau', None))
+        def _q(a): 
+            return np.array(np.quantile(np.asarray(a).ravel(), [0.01,0.5,0.99]))
+        print("u_z quantiles (in all points):", _q(self.coords_unit[...,2]))
+        print("box_center, box_half:", np.array(self.box_center), np.array(self.box_half))
+
+
         
-        xyz_half = jnp.max(jnp.abs(self.coords), axis=(0,1,2,3))
-        self.voxel_world = (2.0 * xyz_half) / (jnp.array(self.grid_res) - 1.0)
+        
+        clipped_frac = ((self.coords_unit <= 1e-6) | (self.coords_unit >= 1-1e-6)).mean(axis=(0,1,2,3))
+        print("clipped frac per axis:", np.array(clipped_frac))
+
+        clipped_x = ((self.coords_unit[...,0] <= 1e-6) | (self.coords_unit[...,0] >= 1-1e-6)).mean()
+        clipped_y = ((self.coords_unit[...,1] <= 1e-6) | (self.coords_unit[...,1] >= 1-1e-6)).mean()
+        clipped_z = ((self.coords_unit[...,2] <= 1e-6) | (self.coords_unit[...,2] >= 1-1e-6)).mean()
+        print("clipped frac per axis:", float(clipped_x), float(clipped_y), float(clipped_z))
+        
         #clipped = ((self.coords_unit<=1e-6)|(self.coords_unit>=1-1e-6)).mean(axis=(0,1,2,3))
         #print("box center:", center, "box half:", half, "clipped frac per axis:", np.array(clipped))
         
@@ -382,6 +479,7 @@ class BayesRaysUncertaintyMapper():
         t_units = t_frames.unit
         t_list = [t_frames[i] for i in frames_to_include]
         A_list  = [jnp.asarray(A[i]) for i in frames_to_include]
+        self.nvis_per_frame = [Af.shape[0] for Af in A_list]
 
         for t_f, A_f in zip(t_list, A_list):
             Omega  = raytracing_args['Omega']
@@ -409,63 +507,72 @@ class BayesRaysUncertaintyMapper():
                     t_geos      = t_geos,
                     t_injection = t_inj,
                     t_units     = t_units,
-                    stop_grad   = True
                 )
                 imvec = img.reshape(-1)
                 return A_f @ imvec
             self.fm_per_frame.append(fm)
         
         self.nvis = int(len(self.fm_per_frame) * sigma.shape[1])
+        assert A[frames_to_include].shape[0] == sigma[frames_to_include].shape[0] == len(frames_to_include), f'{A.shape}, {sigma.shape}, {len(frames_to_include)}'
+        assert self.coords.shape[0] == self.coords_unit.shape[0] == len(self.t_frames), f'{self.coords.shape}, {self.coords_unit.shape}, {len(t_frames)})'
+        assert len(self.fm_per_frame) == len(self.t_frames[frames_to_include]), f'{len(self.fm_per_frame)}, {self.t_frames[frames_to_include]}'
+
+    def param_occupancy(self):
+        R = jnp.array(self.grid_res)
+        u = self.coords_unit
+        i = jnp.floor(u[...,0] * (R[0]-1)).astype(jnp.int32)
+        j = jnp.floor(u[...,1] * (R[1]-1)).astype(jnp.int32)
+        k = jnp.floor(u[...,2] * (R[2]-1)).astype(jnp.int32)
+        occ = np.zeros(tuple(self.grid_res), dtype=np.int32)
+        np.add.at(occ, (np.asarray(i).ravel(), np.asarray(j).ravel(), np.asarray(k).ravel()), 1)
+        return occ
     
-    def _render_one(self, def_params, k):
-        offsets = self.def_grid.apply({"params": def_params}, self.coords_unit)
-        coords_deformed = self.coords + offsets * self.voxel_world
-        vis = self.forward_model(coords_deformed)
-        return vis[k]
-    
-    def _fisher_diag_row(self, k, sigma_k):
-        def re_fn(def_p): return jnp.real(self._render_one(def_p, k))
-        def im_fn(def_p): return jnp.imag(self._render_one(def_p, k))
+    def param_occupancy(self, fov, eight_corners=True):
+        R = np.array(self.grid_res, dtype=np.int32)
 
-        g_re = flatten(jax.grad(re_fn)(self.def_params))
-        g_im = flatten(jax.grad(im_fn)(self.def_params))
+        # in-volume mask (world coords within emission cube)
+        half = np.array([fov, fov, fov], dtype=np.float32) * 0.5
+        in_vol = np.all(
+            (np.asarray(self.coords) >= -half) & (np.asarray(self.coords) <= +half),
+            axis=-1
+        )  # (Nx,Ny,Nz)
 
-        factor = 1.0 / (sigma_k / jnp.sqrt(2.0))
-        gi2 = g_re**2 + g_im**2
+        u = np.asarray(self.coords_unit)[in_vol]  # use only contributing samples
 
-        row = factor**2 * (g_re**2 + g_im**2)
-        active = (jnp.max(gi2) > 1e-20).astype(jnp.int32)
+        occ = np.zeros(tuple(R), dtype=np.float32)
+        if not eight_corners:
+            i = np.floor(u[:, 0] * (R[0]-1)).astype(np.int32)
+            j = np.floor(u[:, 1] * (R[1]-1)).astype(np.int32)
+            k = np.floor(u[:, 2] * (R[2]-1)).astype(np.int32)
+            np.add.at(occ, (i, j, k), 1.0)
+            return occ
 
-        return row, active
-    
-    def compute_hessian_diag(self, sigma: jnp.ndarray, batch_size: int = 256):
-        """
-        sigma : (N_vis,)  noise per visibility (same epoch)
-        """
-        H = jnp.zeros((self.P,), dtype=jnp.float32)
-        R_eff = 0
+        # 8-corner (trilinear) occupancy – much more faithful
+        x = u[:,0]*(R[0]-1); i0 = np.floor(x).astype(np.int32); wx = x - i0
+        y = u[:,1]*(R[1]-1); j0 = np.floor(y).astype(np.int32); wy = y - j0
+        z = u[:,2]*(R[2]-1); k0 = np.floor(z).astype(np.int32); wz = z - k0
+        i1, j1, k1 = i0+1, j0+1, k0+1
 
-        _fisher_batch = jax.jit(jax.vmap(self._fisher_diag_row, in_axes=(0,0)))
-        for start in tqdm(range(0, self.nvis, batch_size), desc='iteration'):
-            end = min(start + batch_size, self.nvis)
-            idx = jnp.arange(start, end)
-            rows, active = _fisher_batch(idx, sigma[idx])
-            H += jnp.sum(rows, axis=0)
-            R_eff += int(jnp.sum(active))
-        
-        R_eff = max(R_eff, 1)
-        return H, R_eff
+        w000=(1-wx)*(1-wy)*(1-wz); w100=wx*(1-wy)*(1-wz)
+        w010=(1-wx)*wy*(1-wz);     w110=wx*wy*(1-wz)
+        w001=(1-wx)*(1-wy)*wz;     w101=wx*(1-wy)*wz
+        w011=(1-wx)*wy*wz;         w111=wx*wy*wz
 
-    def get_covariance(self, H:jnp.array):
+        for (ii,jj,kk,ww) in [(i0,j0,k0,w000),(i1,j0,k0,w100),(i0,j1,k0,w010),(i1,j1,k0,w110),
+                            (i0,j0,k1,w001),(i1,j0,k1,w101),(i0,j1,k1,w011),(i1,j1,k1,w111)]:
+            np.add.at(occ, (ii, jj, kk), ww)
+        return occ
+
+    def get_covariance(self, H:jnp.array, mask_by_occpancy=False, fov=None):
         print(f"computing covariance matrix with lambda: {self.lam}")
-        return 1/(H/self.nvis + 2 * self.lam)
-    
-    def covariance_to_sigma(self, V):
-        """
-        converts convariance diagonal to per voxel standard deviation
-        sqrt(sigma_x^2 + sigma_y^2 + sigma_z^2)
-        """
-        return np.array(jnp.sqrt(jnp.sum(V.reshape(*self.grid_res, 3), axis=-1)))
+        if mask_by_occpancy:
+            occ = self.param_occupancy(fov)
+            H_grid = H.reshape(*self.grid_res, 3)
+            H_norm = H_grid / occ[..., None]
+            H_norm = jnp.where((occ[..., None] > 0), H_norm, 0.0)
+            return 1/(H_norm/self.nvis + 2 * self.lam)
+        else:
+            return 1/(H/self.nvis + 2 * self.lam)
 
     def upsample(self, V, resolution=None, squared_weights=False):
         """
@@ -486,14 +593,13 @@ class BayesRaysUncertaintyMapper():
             var = trilinear(coords, grid, variance=squared_weights).sum(axis=-1)
         return jnp.asarray(var) 
 
-    def prep_uncertainty_3d(self, hessian, covariance: jnp.ndarray, fov,
-                            resolution=64, mask=False, squared_weights=False, output=False):
+    def prep_uncertainty_3d(self, hessian, covariance: jnp.ndarray, fov, min_uncertainty=-3, max_uncertainty=6, 
+                            log_scale=True, resolution=64, mask=False, squared_weights=False):
         def sigma_volume(V, upres=64):
             """upsample and normalize the uncertainty map"""
             nx, ny, nz = self.grid_res
             grid = V.reshape((nx, ny, nz, 3))
 
-         
             if upres > nx:
                 print('upsampling')
                 xs = jnp.linspace(0, 1, upres)
@@ -505,17 +611,19 @@ class BayesRaysUncertaintyMapper():
             return np.array(jnp.sqrt(jnp.sum(grid, axis=-1)))
 
         sigma_vol = sigma_volume(covariance, resolution)
-        
-        xmax, xmin = hessian.max(), hessian.min()
-        min_uncertainty, max_uncertainty = -3, 6
-
-        uncertainty = np.log10(sigma_vol + 1e-12)
+        if log_scale:
+            uncertainty = np.log10(sigma_vol + 1e-12)
         uncertainty = np.clip(uncertainty, min_uncertainty, max_uncertainty)
         uncertainty = (uncertainty - uncertainty.min()) / (uncertainty.max() - uncertainty.min() + 1e-12)
 
+        #occ = self.param_occupancy(fov)
+        #active_mask = (occ > 0)
+        #_mask = active_mask[...]
+        #uncertainty = jnp.where(_mask, uncertainty, 0.)
+        
         if mask:
             emission_estimate = bhnerf.network.sample_3d_grid(self.pred_apply, self.pred_params, fov=fov, resolution=resolution)
-            eps = emission_estimate.max() * 0.001
+            eps = emission_estimate.max() * 0.02
             mask = (emission_estimate > eps)
             uncertainty = np.where(mask, uncertainty, 0.0)
 
@@ -672,7 +780,7 @@ class BayesRaysUncertaintyMapper():
             #offsets_preT = jnp.sum(Rinv_f * offsets_T, axis=1)
             #offsets_pre = jnp.moveaxis(offsets_preT, 0, -1)
 
-            coords_def = self.coords + offsets * voxel_world
+            coords_def = self.coords + offsets * self.voxel_world
             vis_f = fm_f(coords_def)
             return vis_f[ray_idx]
 
@@ -700,15 +808,15 @@ class BayesRaysUncertaintyMapper():
         - H (jnp.ndarray): Shape (P,) the diagonal of the hessian, where P is the number of parameters the deformation grid
         - R_eff (int): the number of active rays (have non-zero gradient which intersect w/the bh volume)
         """
-        nvis_f = int(self.nvis/len(self.fm_per_frame))
-        print("nvis per frame:", nvis_f, "total:", self.nvis)
         H = jnp.zeros((self.P,), dtype=jnp.float32)
         R_eff = 0
 
         for f in tqdm(range(len(self.fm_per_frame)), desc='frame'):
+            nvis_f = self.nvis_per_frame[f]
+            if f % 2 == 0: print('frame {} visibilities'.format(f), nvis_f)
             _fisher_batch = self._make_fisher_batch_for_frame(f)
             for start in tqdm(range(0, nvis_f, batch_size), desc='iteration', leave=False):
-                end = min(start + batch_size, self.nvis)
+                end = min(start + batch_size, nvis_f)
                 ray_idx = jnp.arange(start, end)
 
                 rows, active = _fisher_batch(ray_idx, sigma[f, ray_idx])
@@ -750,3 +858,42 @@ def omega_grid_kepler(fov_M: float, R: int, spin: float, M: float = 1.0) -> np.n
     sgn = np.sign(spin + 1e-12)
     Ms  = np.sqrt(M).astype(np.float32)
     return (sgn * Ms / (r**1.5 + spin * Ms)).astype(np.float32)  
+
+"""
+def _render_one(self, def_params, k):
+        offsets = self.def_grid.apply({"params": def_params}, self.coords_unit)
+        coords_deformed = self.coords + offsets * self.voxel_world
+        vis = self.forward_model(coords_deformed)
+        return vis[k]
+    
+    def _fisher_diag_row(self, k, sigma_k):
+        def re_fn(def_p): return jnp.real(self._render_one(def_p, k))
+        def im_fn(def_p): return jnp.imag(self._render_one(def_p, k))
+
+        g_re = flatten(jax.grad(re_fn)(self.def_params))
+        g_im = flatten(jax.grad(im_fn)(self.def_params))
+
+        factor = 1.0 / (sigma_k / jnp.sqrt(2.0))
+        gi2 = g_re**2 + g_im**2
+
+        row = factor**2 * (g_re**2 + g_im**2)
+        active = (jnp.max(gi2) > 1e-20).astype(jnp.int32)
+
+        return row, active
+    
+    def compute_hessian_diag(self, sigma: jnp.ndarray, batch_size: int = 256):
+        sigma : (N_vis,)  noise per visibility (same epoch)
+        H = jnp.zeros((self.P,), dtype=jnp.float32)
+        R_eff = 0
+
+        _fisher_batch = jax.jit(jax.vmap(self._fisher_diag_row, in_axes=(0,0)))
+        for start in tqdm(range(0, self.nvis, batch_size), desc='iteration'):
+            end = min(start + batch_size, self.nvis)
+            idx = jnp.arange(start, end)
+            rows, active = _fisher_batch(idx, sigma[idx])
+            H += jnp.sum(rows, axis=0)
+            R_eff += int(jnp.sum(active))
+        
+        R_eff = max(R_eff, 1)
+        return H, R_eff
+"""
