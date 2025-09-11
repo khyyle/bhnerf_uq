@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import animation
 from mpl_toolkits.axes_grid1 import make_axes_locatable
+import plotly.graph_objects as go
 from bhnerf.utils import normalize
 import jax
 from jax import numpy as jnp
@@ -876,7 +877,6 @@ def render_volumes_plotly(volumes_norm, fov, percentiles: list[tuple[float, floa
         if multiple volumes, syncs camera movements across the two
 
     """
-    import plotly.graph_objects as go
     import plotly.subplots
     assert len(volumes_norm) >= 1, "Need at least one volume"
     R_x, R_y, R_z = volumes_norm[0].shape
@@ -963,8 +963,6 @@ def render_uncert_volume_plotly(std_norm, fov,
                                 level_norm=(0.00, 0.20, 0.40, 0.60, 0.80, 1.00),
                                 opacity=(0.00, 0.02, 0.05, 0.10, 0.18, 0.28),
                                 cmap="Plasma", surface_count=28, isomin=None, isomax=None, global_opacity=None):
-    import numpy as np
-    import plotly.graph_objects as go
 
     Xsz, Ysz, Zsz = std_norm.shape
     xs = np.linspace(-fov/2, fov/2, Xsz)
@@ -1061,4 +1059,706 @@ def render_3d_movie(volume, t_frames, visualizer, rmax, cam_r=37.0, bh_radius=2.
         anim.save(output, writer='ffmpeg', fps=fps)
 
     return anim
+
+def render_3d_quiver(sigma_x, sigma_y, sigma_z,
+                     x=None, y=None, z=None,
+                     origin=(0.0, 0.0, 0.0),
+                     spacing=(1.0, 1.0, 1.0),
+                     stride=(2, 2, 2),
+                     mask=None,
+                     mag_quantile=None,
+                     max_arrows=5000,
+                     normalize=False,
+                     scale=1.0,
+                     anchor='tail',
+                     colorscale='Viridis',
+                     opacity=0.9,
+                     sizemode='absolute',
+                     sizeref=None,
+                     showscale=True,
+                     title="3D Uncertainty Quiver (cones)",
+                     color_quantile=None,
+                     colorbar_pos=(1.08, 0.5, 0.9)):  
     
+    """
+    Render a 3d quiver plot of the uncertainty vectors on an image space grid
+
+    Parameters
+    ----------
+    sigma_x, sigma_y, sigma_z : np.ndarray
+        3D arrays (Nx, Ny, Nz) with per-voxel standard deviations along x,y,z.
+    x, y, z : None | 1D arrays | 3D arrays
+        If 1D, treated as coordinate axes; if 3D, must match sigma_* shapes and give positions.
+        If None, coordinates are built from origin + index * spacing.
+    origin: tuple[float, float, float]
+        (x,y,z) describing the center of the viewed area
+    spacing: tuple[float, float, float]
+        physical spacing between grid points if building from indices. If xyz coords passed this is ignored.
+    stride: tuple[float, float, float]
+        dx, dy, dz spacing for each cone
+    mask : bool/float np.ndarray
+        Optional same-shaped array. If bool, True keeps; if float, values > 0 keep.
+    mag_quantile : float in (0,1)
+        Drop vectors above this magnitude quantile (useful to damp a few giant cones).
+    max_arrows: int
+        maximum number of cones to draw on the plot
+    normalize : bool
+        If True, draw only direction (unit cones) and use 'scale' to set uniform length.
+    anchor: str
+        ('tail', 'tip', 'cm') where to place the cone relative to (x,y,z)
+    colorscale: str
+        colormap to apply to the plot
+    opacity: float
+        relative opacity value to set for each cone
+    sizemode: str
+        ('absolute', 'scaled') thickness of the cones.
+    sizeref: 
+        reference thickness when sizemode='absolute'. Makes cones fatter.
+    showscale: bool
+        render a colorbar
+    title: str
+        Title of the plot
+    """
+    sx = np.asarray(sigma_x)
+    sy = np.asarray(sigma_y)
+    sz = np.asarray(sigma_z)
+    assert sx.shape == sy.shape == sz.shape, "sigma_x, sigma_y, sigma_z must have identical shapes"
+    Nx, Ny, Nz = sx.shape
+
+    if x is None or y is None or z is None:
+        dx, dy, dz = spacing
+        ox, oy, oz = origin
+        xi = np.arange(Nx) * dx + ox
+        yi = np.arange(Ny) * dy + oy
+        zi = np.arange(Nz) * dz + oz
+        X, Y, Z = np.meshgrid(xi, yi, zi, indexing='ij')
+    else:
+        x_arr = np.asarray(x)
+        y_arr = np.asarray(y)
+        z_arr = np.asarray(z)
+        if x_arr.ndim == y_arr.ndim == z_arr.ndim == 1:
+            X, Y, Z = np.meshgrid(x_arr, y_arr, z_arr, indexing='ij')
+        else:
+            X, Y, Z = np.asarray(x), np.asarray(y), np.asarray(z)
+            assert X.shape == sx.shape == Y.shape == Z.shape, "When passing 3D x/y/z, they must match sigma shapes"
+
+    sx_s = sx[::stride[0], ::stride[1], ::stride[2]]
+    sy_s = sy[::stride[0], ::stride[1], ::stride[2]]
+    sz_s = sz[::stride[0], ::stride[1], ::stride[2]]
+    Xs   = X [::stride[0], ::stride[1], ::stride[2]]
+    Ys   = Y [::stride[0], ::stride[1], ::stride[2]]
+    Zs   = Z [::stride[0], ::stride[1], ::stride[2]]
+
+    Xf, Yf, Zf = Xs.ravel(), Ys.ravel(), Zs.ravel()
+    Uf, Vf, Wf = sx_s.ravel(), sy_s.ravel(), sz_s.ravel()
+
+    keep = np.ones_like(Uf, dtype=bool)
+    if mask is not None:
+        m = np.asarray(mask)[::stride[0], ::stride[1], ::stride[2]].ravel()
+        keep &= (m.astype(bool) if m.dtype == bool else (m > 0))
+
+    mag = np.sqrt(Uf**2 + Vf**2 + Wf**2)
+    keep &= np.isfinite(mag) & (mag > 0)
+
+    if mag_quantile is not None and 0.0 < mag_quantile < 1.0:
+        cutoff = np.quantile(mag[keep], mag_quantile)
+        keep &= (mag <= cutoff)
+
+    Xf, Yf, Zf, Uf, Vf, Wf, mag = Xf[keep], Yf[keep], Zf[keep], Uf[keep], Vf[keep], Wf[keep], mag[keep]
+
+    if Xf.size > max_arrows:
+        rng = np.random.default_rng(0)
+        idx = rng.choice(Xf.size, size=max_arrows, replace=False)
+        Xf, Yf, Zf, Uf, Vf, Wf, mag = Xf[idx], Yf[idx], Zf[idx], Uf[idx], Vf[idx], Wf[idx], mag[idx]
+
+    if normalize:
+        eps = 1e-12
+        Uf, Vf, Wf = Uf / (mag + eps), Vf / (mag + eps), Wf / (mag + eps)
+        mag = np.ones_like(mag)
+    Uf, Vf, Wf = Uf * scale, Vf * scale, Wf * scale
+
+    final_mag = np.sqrt(Uf**2 + Vf**2 + Wf**2)
+    if final_mag.size == 0:
+        cmin, cmax = 0.0, 1.0
+    else:
+        if color_quantile and 0 <= color_quantile[0] < color_quantile[1] <= 100:
+            cmin, cmax = np.nanpercentile(final_mag, list(color_quantile))
+        else:
+            cmin, cmax = float(np.nanmin(final_mag)), float(np.nanmax(final_mag))
+        if not np.isfinite(cmin): cmin = 0.0
+        if not np.isfinite(cmax) or cmax <= cmin: cmax = cmin + 1e-12
+
+    if sizeref is None:
+        xr = (Xf.max() - Xf.min()) or 1.0
+        yr = (Yf.max() - Yf.min()) or 1.0
+        zr = (Zf.max() - Zf.min()) or 1.0
+        sizeref = 0.02 * max(xr, yr, zr)
+
+    cone = go.Cone(
+        x=Xf, y=Yf, z=Zf,
+        u=Uf, v=Vf, w=Wf,
+        anchor=anchor,
+        colorscale=colorscale,
+        showscale=showscale,
+        opacity=opacity,
+        sizemode=sizemode,
+        sizeref=sizeref,
+        cmin=float(cmin),
+        cmax=float(cmax),
+        cauto=False,
+        colorbar=dict(x=1.08,y=0.5,len=0.9,xpad=10)
+    )
+
+    fig = go.Figure(data=[cone])
+    fig.update_layout(
+        title=title,
+        scene=dict(
+            xaxis_title='x',
+            yaxis_title='y',
+            zaxis_title='z',
+            aspectmode='data',
+        ),
+        margin=dict(l=0, r=0, t=40, b=0)
+    )
+    return fig
+
+def overlay_obs_and_warp_from_geos(
+    fig,
+    geos,
+    x, y, z,
+    pixel=None,
+    spin=+0.2,
+    warp_axis=np.array([0.0,0.0,1.0]),
+    obs_color="#DC143C",
+    warp_color="#4169E1",
+    obs_label="obs",
+    warp_label=None,
+):
+    def _to_mesh(a, b, c):
+        A, B, C = np.asarray(a), np.asarray(b), np.asarray(c)
+        if A.ndim == B.ndim == C.ndim == 1:
+            return np.meshgrid(A, B, C, indexing='ij')
+        return A, B, C
+
+    X, Y, Z = _to_mesh(x, y, z)
+    xmin, xmax = float(np.nanmin(X)), float(np.nanmax(X))
+    ymin, ymax = float(np.nanmin(Y)), float(np.nanmax(Y))
+    zmin, zmax = float(np.nanmin(Z)), float(np.nanmax(Z))
+    center = np.array([(xmin+xmax)/2, (ymin+ymax)/2, (zmin+zmax)/2], dtype=float)
+    Lmax   = float(max(xmax-xmin, ymax-ymin, zmax-zmin) or 1.0)
+
+    obs_dir, p_obs = obs_dir_from_geos(geos, pixel=pixel)
+
+    def _add_arrow(p0, vhat, length, color, name, legend=False, legendgroup=None, text=None, text_shift=0.035):
+        p1 = p0 + length * vhat
+        fig.add_trace(go.Scatter3d(
+            x=[p0[0], p1[0]], y=[p0[1], p1[1]], z=[p0[2], p1[2]],
+            mode='lines', line=dict(width=6, color=color), name=name, showlegend=legend,
+            legendgroup=legendgroup 
+        ))
+        fig.add_trace(go.Cone(
+            x=[p1[0]], y=[p1[1]], z=[p1[2]],
+            u=[vhat[0]], v=[vhat[1]], w=[vhat[2]],
+            anchor='tail', sizemode='absolute',
+            showscale=False,
+            colorscale=[[0, color], [1, color]],
+            name=name + " head", 
+            showlegend=False,
+            legendgroup=legendgroup
+        ))
+        if text:
+            fig.add_trace(go.Scatter3d(
+                x=[p1[0] + text_shift*Lmax], y=[p1[1]], z=[p1[2]],
+                mode='text', text=[text], showlegend=False
+            ))
+
+    obs_len = 0.7 * Lmax
+    p0_obs = center - 0.35 * Lmax * obs_dir
+    _add_arrow(p0_obs, obs_dir, obs_len, obs_color, name=obs_label or "Observation direction", legend=True,legendgroup="obs")
+
+    a = np.asarray(warp_axis, dtype=float)
+    a /= (np.linalg.norm(a) + 1e-12)
+    tmp = np.array([1.0, 0.0, 0.0]) if abs(a[0]) < 0.9 else np.array([0.0, 1.0, 0.0])
+    e1 = tmp - a*np.dot(tmp, a)
+    e1 /= (np.linalg.norm(e1) + 1e-12)
+    e2 = np.cross(a, e1)
+
+    R = 0.35 * Lmax
+    theta0 = np.deg2rad(25.0)
+    dtheta = np.deg2rad(85.0) * (1.0 if spin >= 0 else -1.0)
+    K = 64
+    thetas = theta0 + np.linspace(0, dtheta, K)
+
+    arc = (center.reshape(3,1)
+           + R*(np.outer(e1, np.cos(thetas)) + np.outer(e2, np.sin(thetas))))
+    fig.add_trace(go.Scatter3d(
+        x=arc[0], y=arc[1], z=arc[2],
+        mode='lines', line=dict(width=6, color=warp_color),
+        name=warp_label or "Rotation direction", showlegend=True, legendgroup='warp'
+    ))
+    tan = -np.sin(thetas[-1])*e1 + np.cos(thetas[-1])*e2
+    if spin < 0: tan *= -1.0
+    _add_arrow(arc[:, -1], tan/np.linalg.norm(tan), 0.3*R, warp_color,
+               name=warp_label or "Rotation direction", legend=False, legendgroup="warp")
+
+    fig.update_layout(
+        legend=dict(
+            x=0.02, y=0.02, xanchor='left', yanchor='bottom',
+            bgcolor='rgba(255,255,255,0.65)', bordercolor='rgba(0,0,0,0.25)', borderwidth=1
+        ),
+        scene=dict(aspectmode='data')
+    )
+    return fig
+
+def obs_dir_from_geos(geos, pixel=None):
+    if hasattr(geos, "dims") and ("alpha" in geos.dims) and ("beta" in geos.dims):
+        na = int(np.asarray(geos.alpha).size)
+        nb = int(np.asarray(geos.beta).size)
+        ia, ib = (na//2, nb//2) if pixel is None else (int(pixel[0]), int(pixel[1]))
+        x = np.asarray(geos.x.isel(alpha=ia, beta=ib))
+        y = np.asarray(geos.y.isel(alpha=ia, beta=ib))
+        z = np.asarray(geos.z.isel(alpha=ia, beta=ib))
+    else:
+        Xg, Yg, Zg = map(np.asarray, (geos.x, geos.y, geos.z))
+        na, nb = int(np.asarray(geos.alpha).size), int(np.asarray(geos.beta).size)
+        shp = Xg.shape
+        ax_a = next(i for i,s in enumerate(shp) if s == na)
+        ax_b = next(i for i,s in enumerate(shp) if (i != ax_a and s == nb))
+        ia, ib = (na//2, nb//2) if pixel is None else (int(pixel[0]), int(pixel[1]))
+        def _take(A):
+            A = np.take(A, ia, axis=ax_a); A = np.take(A, ib, axis=ax_b); return A
+        x, y, z = _take(Xg), _take(Yg), _take(Zg)
+
+    r = np.sqrt(x*x + y*y + z*z)
+    i_obs = int(np.nanargmax(r))
+    candidates = []
+    if i_obs > 0:             candidates.append(i_obs - 1)
+    if i_obs < r.size - 1:    candidates.append(i_obs + 1)
+    i_next = min(candidates, key=lambda i: r[i])
+
+    v = np.array([x[i_next]-x[i_obs], y[i_next]-y[i_obs], z[i_next]-z[i_obs]], float)
+    v /= (np.linalg.norm(v) + 1e-12)
+    p_obs = np.array([x[i_obs], y[i_obs], z[i_obs]], float)
+    return v, p_obs
+
+def overlay_obs_and_warp_outside(fig, geos, x, y, z, spin=+0.2,
+                                 pixel=None, warp_axis=np.array([0,0,1.0]),
+                                 obs_color="#DC143C", warp_color="#4169E1",
+                                 obs_label="Observation direction", warp_label='warp direction',
+                                 margin=0.12,
+                                 arrow_len=0.80
+                                 ):
+    def _mesh(a,b,c):
+        A,B,C = map(np.asarray, (a,b,c))
+        return np.meshgrid(A,B,C, indexing='ij') if (A.ndim==B.ndim==C.ndim==1) else (A,B,C)
+    X,Y,Z = _mesh(x,y,z)
+    xmin,xmax = float(np.nanmin(X)), float(np.nanmax(X))
+    ymin,ymax = float(np.nanmin(Y)), float(np.nanmax(Y))
+    zmin,zmax = float(np.nanmin(Z)), float(np.nanmax(Z))
+    center = np.array([(xmin+xmax)/2, (ymin+ymax)/2, (zmin+zmax)/2], float)
+    span  = np.array([xmax-xmin, ymax-ymin, zmax-zmin], float)
+    Lmax = float(np.max(span) or 1.0)
+
+    d_obs, p_obs = obs_dir_from_geos(geos, pixel=pixel)
+
+    start = center + (0.5 + margin)*Lmax * d_obs
+    length = arrow_len * Lmax
+    end   = start + length * d_obs
+
+    fig.add_trace(go.Scatter3d(
+        x=[start[0], end[0]], y=[start[1], end[1]], z=[start[2], end[2]],
+        mode='lines', line=dict(width=8, color=obs_color),
+        name=obs_label, showlegend=True
+    ))
+    fig.add_trace(go.Cone(
+        x=[end[0]], y=[end[1]], z=[end[2]],
+        u=[d_obs[0]], v=[d_obs[1]], w=[d_obs[2]],
+        anchor='tail', sizemode='absolute', sizeref=0.06*length,
+        showscale=False, colorscale=[[0,obs_color],[1,obs_color]],
+        name=obs_label+" head", showlegend=False
+    ))
+
+    a = np.asarray(warp_axis, float); a /= (np.linalg.norm(a)+1e-12)
+    tmp = np.array([1,0,0], float) if abs(a[0])<0.9 else np.array([0,1,0], float)
+    e1 = tmp - a*np.dot(tmp,a) 
+    e1 /= (np.linalg.norm(e1)+1e-12)
+    e2 = np.cross(a, e1)
+    R = (0.45 + margin)*Lmax
+    theta0 = np.deg2rad(25.0)
+    dtheta = np.deg2rad(85.0) * (1.0 if spin>=0 else -1.0)
+    th = theta0 + np.linspace(0, dtheta, 64)
+    arc = (center.reshape(3,1)
+           + R*(np.outer(e1, np.cos(th)) + np.outer(e2, np.sin(th))))
+    fig.add_trace(go.Scatter3d(
+        x=arc[0], y=arc[1], z=arc[2],
+        mode='lines', line=dict(width=8, color=warp_color),
+        name="Warp (rotation)", showlegend=True
+    ))
+    tan = -np.sin(th[-1])*e1 + np.cos(th[-1])*e2
+    if spin<0: tan *= -1.0
+    tan /= (np.linalg.norm(tan)+1e-12)
+    head_start = arc[:, -1]
+    head_len = 0.25*Lmax
+    fig.add_trace(go.Cone(
+        x=[head_start[0]], y=[head_start[1]], z=[head_start[2]],
+        u=[tan[0]], v=[tan[1]], w=[tan[2]],
+        anchor='tail', sizemode='absolute', sizeref=0.06*head_len,
+        showscale=False, colorscale=[[0,warp_color],[1,warp_color]],
+        name=(warp_label or ("warp +" if spin>=0 else "warp -")), showlegend=False
+    ))
+
+    fig.update_layout(
+        legend=dict(
+            x=0.02, y=0.02, xanchor='left', yanchor='bottom',
+            bgcolor='rgba(255,255,255,0.65)', bordercolor='rgba(0,0,0,0.25)', borderwidth=1
+        ),
+        scene=dict(aspectmode='data')
+    )
+    return fig
+
+
+def plot_geodesics_plotly(
+    geos,
+    value=None,
+    stride=(1,1),
+    s_stride=1,
+    max_r=None,
+    mode="markers",
+    marker_size=2.5,
+    line_every=8,
+    max_line_traces=256,
+    colorscale="Viridis",
+    cmin=None, cmax=None,
+    colorbar_title=None,
+    show_horizon=True,
+    wire_sphere_r=None,
+    fig=None,
+):
+    """
+    Plot (subsampled) geodesics from an xarray Dataset `geos` using Plotly.
+    Colors points (or rays) by `value` (same grid as geos), else by radius.
+
+    Supports geos with dims (alpha,beta,s) or (pix,s).
+
+    Parameters:
+    -----------
+
+    geos: xr.Dataset
+        A dataset specifying geodesics (ray trajectories) ending at the image plane.
+    value: xr.DataArray
+        xr.DataArray with same geodesic grid (e.g., doppler g). If None, colors by radius r.
+    stride: tuple[int, int]
+        subsample in (alpha,beta) to keep plotting fast. Default will draw all rays
+    s_stride: int
+        subsample along each geodesic
+    max_r: int
+        clip rays to r < max_r (in M); None = no clip
+    mode: str
+        "markers" | "markers+lines" | "lines" -- plotting type for the rays
+    marker_size: int
+        dot size when markers are drawn
+    line_every: int
+        draw a *few* line rays (every Nth in the subsampled grid)
+    max_line_traces: int
+        safety cap for number of line traces
+    colorscale:
+        the colorscale to plot against
+    cmin: float
+        minimum intensity
+    cmax: float
+        maximum intensity
+    colorbar_title: str
+        title of the colorbar
+    show_horizon: bool
+        render a wire sphere representing the event horizong of the black hole
+    wire_sphere_r: float
+        render the stable orbit region of the black hole as a grey, transparent sphere
+    fig: go.Figure
+        if passed in, adds geodesics to an existing figure. 
+    """
+
+    if hasattr(geos, "dims") and ("alpha" in geos.dims) and ("beta" in geos.dims):
+        a_dim, b_dim, s_dim = "alpha", "beta", next(d for d in geos.dims if d not in ("alpha","beta"))
+        A = geos[a_dim].size; B = geos[b_dim].size
+        ia = slice(0, None, max(1,int(stride[0])))
+        ib = slice(0, None, max(1,int(stride[1])))
+        isamp = {a_dim: ia, b_dim: ib, s_dim: slice(0, None, max(1,int(s_stride)))}
+        x = np.asarray(geos.x.isel(**isamp)); y = np.asarray(geos.y.isel(**isamp)); z = np.asarray(geos.z.isel(**isamp))
+        if value is not None:
+            val = np.asarray(value.isel(**isamp))
+    elif hasattr(geos, "dims") and ("pix" in geos.dims):
+        p_dim, s_dim = "pix", next(d for d in geos.dims if d != "pix")
+        ip = slice(0, None, max(1,int(stride[0])))  # use stride[0] for pix
+        isamp = {p_dim: ip, s_dim: slice(0, None, max(1,int(s_stride)))}
+        x = np.asarray(geos.x.isel(**isamp)); y = np.asarray(geos.y.isel(**isamp)); z = np.asarray(geos.z.isel(**isamp))
+        if value is not None:
+            val = np.asarray(value.isel(**isamp))
+    else:
+        raise ValueError("Unsupported geos dimensions; expected (alpha,beta,*) or (pix,*)")
+
+    r = np.sqrt(x*x + y*y + z*z)
+    if max_r is not None:
+        mask_r = (r <= max_r)
+        x = np.where(mask_r, x, np.nan)
+        y = np.where(mask_r, y, np.nan)
+        z = np.where(mask_r, z, np.nan)
+        if value is not None:
+            val = np.where(mask_r, val, np.nan)
+
+    if value is None:
+        color = r
+        if colorbar_title is None: colorbar_title = "r"
+    else:
+        color = val
+        if colorbar_title is None: colorbar_title = getattr(value, "name", "value")
+
+    cf = color[np.isfinite(color)]
+    if cmin is None or cmax is None:
+        if cf.size:
+            c_lo, c_hi = np.nanpercentile(cf, [2, 98])
+            if cmin is None: cmin = float(c_lo)
+            if cmax is None: cmax = float(max(c_hi, c_lo + 1e-9))
+        else:
+            cmin, cmax = 0.0, 1.0
+
+    if fig is None:
+        fig = go.Figure()
+
+    if "markers" in mode:
+        fig.add_trace(go.Scatter3d(
+            x=x.ravel(), y=y.ravel(), z=z.ravel(),
+            mode="markers",
+            marker=dict(
+                size=marker_size,
+                color=color.ravel(),
+                colorscale=colorscale,
+                cmin=cmin, cmax=cmax,
+                colorbar=dict(title=colorbar_title, len=0.85)
+            ),
+            name="Geodesics (points)",
+            showlegend=False
+        ))
+
+    if "lines" in mode:
+        if x.ndim == 3:
+            Na, Nb, Ns = x.shape
+            line_is = list(range(0, Na, max(1,int(line_every))))
+            line_js = list(range(0, Nb, max(1,int(line_every))))
+            traces = 0
+            for i in line_is:
+                for j in line_js:
+                    if traces >= max_line_traces: break
+                    xi, yi, zi = x[i,j,:], y[i,j,:], z[i,j,:]
+                    ci = color[i,j,:]
+                    c_ij = float(np.nanmedian(ci[np.isfinite(ci)])) if np.isfinite(ci).any() else cmin
+                    fig.add_trace(go.Scatter3d(
+                        x=xi, y=yi, z=zi,
+                        mode="lines",
+                        line=dict(width=3, color="#9aa0a6"), #colorscale=colorscale, cmin=cmin, cmax=cmax),
+                        name="Geodesic",
+                        showlegend=False,
+                    ))
+                    traces += 1
+                if traces >= max_line_traces: break
+        else:
+            Np, Ns = x.shape
+            for k in range(0, Np, max(1,int(line_every))):
+                xi, yi, zi = x[k,:], y[k,:], z[k,:]
+                ci = color[k,:]
+                c_k = float(np.nanmedian(ci[np.isfinite(ci)])) if np.isfinite(ci).any() else cmin
+                fig.add_trace(go.Scatter3d(
+                    x=xi, y=yi, z=zi,
+                    mode="lines",
+                    line=dict(width=3, color=c_k, colorscale=colorscale, cmin=cmin, cmax=cmax),
+                    name="Geodesic",
+                    showlegend=False,
+                ))
+
+    if show_horizon:
+        spin = float(np.asarray(geos.spin)) if hasattr(geos, "spin") else 0.0
+        r_plus = float(1.0 + np.sqrt(max(0.0, 1.0 - spin**2)))
+        u = np.linspace(0, 2*np.pi, 64)
+        v = np.linspace(0, np.pi, 32)
+        xs = r_plus*np.outer(np.cos(u), np.sin(v))
+        ys = r_plus*np.outer(np.sin(u), np.sin(v))
+        zs = r_plus*np.outer(np.ones_like(u), np.cos(v))
+        fig.add_trace(go.Surface(
+            x=xs, y=ys, z=zs,
+            showscale=False, opacity=0.9, name="Horizon",
+            colorscale=[[0,"black"],[1,"black"]]
+        ))
+
+    if wire_sphere_r is not None:
+        R = float(wire_sphere_r)
+        u = np.linspace(0, 2*np.pi, 64)
+        v = np.linspace(0, np.pi, 16)
+        xs = R*np.outer(np.cos(u), np.sin(v))
+        ys = R*np.outer(np.sin(u), np.sin(v))
+        zs = R*np.outer(np.ones_like(u), np.cos(v))
+        fig.add_trace(go.Surface(
+            x=xs, y=ys, z=zs,
+            showscale=False, opacity=0.12, name="Wire sphere",
+            surfacecolor=np.zeros_like(xs),
+            colorscale=[[0,"#888"],[1,"#888"]]
+        ))
+
+    fig.update_layout(
+        scene=dict(aspectmode="data",
+                   xaxis_title="x", yaxis_title="y", zaxis_title="z"),
+        margin=dict(l=0,r=0,t=40,b=0),
+    )
+    return fig
+
+def _grid_mesh(x, y, z):
+    """Accept 1D axes or 3D meshes; return 3D meshes X,Y,Z."""
+    X = np.asarray(x); Y = np.asarray(y); Z = np.asarray(z)
+    if X.ndim == Y.ndim == Z.ndim == 1:
+        return np.meshgrid(X, Y, Z, indexing='ij')
+    return X, Y, Z
+
+def _voxel_step(a3):
+    """Estimate typical step size (voxel pitch) from a 3D mesh or 1D axis."""
+    a = np.asarray(a3)
+    if a.ndim == 3: a = a[:, 0, 0]
+    d = np.diff(a)
+    d = d[np.isfinite(d) & (np.abs(d) > 0)]
+    return float(np.median(np.abs(d))) if d.size else 1.0
+
+def _pick_geodesic(geos, select="center", pixel=None, stride=(4,4)):
+    """
+    Choose which ray (pixel) to use.
+    select:
+      - "center": center pixel
+      - "min_r": pixel whose geodesic attains the smallest radius (closest approach)
+      - ("pix", k): use integer pixel index for geos with dims (pix, s)
+      - ("ab", ia, ib): force (alpha,beta) indices
+    stride: subsampling when searching over pixels (for speed)
+    """
+    if hasattr(geos, "dims") and ("alpha" in geos.dims) and ("beta" in geos.dims):
+        a_dim, b_dim = "alpha", "beta"
+        s_dim = next(d for d in geos.dims if d not in ("alpha","beta"))
+        A, B = geos[a_dim].size, geos[b_dim].size
+
+        if isinstance(select, tuple) and select and select[0] == "ab":
+            ia, ib = int(select[1]), int(select[2])
+
+        elif select == "center" and pixel is None:
+            ia, ib = A//2, B//2
+
+        elif select == "min_r":
+            ia = slice(0, None, max(1, int(stride[0])))
+            ib = slice(0, None, max(1, int(stride[1])))
+            r = np.asarray(geos.r.isel({a_dim: ia, b_dim: ib})) if "r" in geos else None
+            else_r = None
+            if "r" not in geos:
+                x = np.asarray(geos.x.isel({a_dim: ia, b_dim: ib}))
+                y = np.asarray(geos.y.isel({a_dim: ia, b_dim: ib}))
+                z = np.asarray(geos.z.isel({a_dim: ia, b_dim: ib}))
+                r = np.sqrt(x*x + y*y + z*z)
+            idx_flat = np.nanargmin(np.nanmin(r, axis=-1)).item()
+            ia0 = np.arange(0, A, max(1,int(stride[0])))[idx_flat // r.shape[1]]
+            ib0 = np.arange(0, B, max(1,int(stride[1])))[idx_flat %  r.shape[1]]
+            ia, ib = int(ia0), int(ib0)
+
+        else:
+            ia, ib = (A//2, B//2) if pixel is None else (int(pixel[0]), int(pixel[1]))
+
+        x = np.asarray(geos.x.isel({a_dim: ia, b_dim: ib}))
+        y = np.asarray(geos.y.isel({a_dim: ia, b_dim: ib}))
+        z = np.asarray(geos.z.isel({a_dim: ia, b_dim: ib}))
+        return (("ab", ia, ib), np.stack([x, y, z], axis=1))  # points (S,3)
+
+    elif hasattr(geos, "dims") and ("pix" in geos.dims):
+        p_dim = "pix"; s_dim = next(d for d in geos.dims if d != "pix")
+        P = geos[p_dim].size
+
+        if isinstance(select, tuple) and select and select[0] == "pix":
+            k = int(select[1])
+
+        elif select == "center" and pixel is None:
+            k = P//2
+
+        elif select == "min_r":
+            ip = slice(0, None, max(1, int(stride[0])))
+            r = np.asarray(geos.r.isel({p_dim: ip})) if "r" in geos else None
+            else_r = None
+            if "r" not in geos:
+                x = np.asarray(geos.x.isel({p_dim: ip}))
+                y = np.asarray(geos.y.isel({p_dim: ip}))
+                z = np.asarray(geos.z.isel({p_dim: ip}))
+                r = np.sqrt(x*x + y*y + z*z)
+            # r shape: (P', S)
+            k_s = int(np.nanargmin(np.nanmin(r, axis=-1)))
+            k = np.arange(0, P, max(1,int(stride[0])))[k_s]
+
+        else:
+            k = int(pixel if isinstance(pixel, int) else (P//2))
+
+        x = np.asarray(geos.x.isel({p_dim: k}))
+        y = np.asarray(geos.y.isel({p_dim: k}))
+        z = np.asarray(geos.z.isel({p_dim: k}))
+        return (("pix", k), np.stack([x, y, z], axis=1))
+
+    else:
+        raise ValueError("Unsupported geos dims; expected (alpha,beta,*) or (pix,*)")
+
+def geodesic_tube_mask(x, y, z, geos, select="center", pixel=None,
+                       stride=(4,4), s_stride=1, radius=None, chunk_voxels=200_000):
+    """
+    Boolean mask of voxels within 'radius' of the chosen *curved* geodesic.
+
+    - x,y,z: 1D axes or 3D meshes defining your volume grid (same as you pass to render_3d_quiver)
+    - geos: xr.Dataset with geodesics (dims: (alpha,beta,s) or (pix,s))
+    - select: "center" | "min_r" | ("ab", ia, ib) | ("pix", k)
+    - s_stride: subsample along the geodesic (e.g. 1 keeps all points, 2 keeps every other)
+    - radius: tube radius in the same units as x,y,z. If None, defaults to ~2 voxels.
+    - chunk_voxels: compute distances in chunks to cap memory.
+    """
+    sel, P = _pick_geodesic(geos, select=select, pixel=pixel, stride=stride)
+    P = P[::max(1,int(s_stride))]
+    P = P[np.all(np.isfinite(P), axis=1)]
+    if P.shape[0] < 2:
+        raise ValueError("Not enough points on the selected geodesic after subsampling.")
+
+    X, Y, Z = _grid_mesh(x, y, z)
+    if radius is None:
+        h = np.median([_voxel_step(X), _voxel_step(Y), _voxel_step(Z)])
+        radius = 2.0 * float(h)
+
+    R = np.stack([X.ravel(), Y.ravel(), Z.ravel()], axis=1)
+    N = R.shape[0]
+    min_d2 = np.full(N, np.inf, dtype=float)
+
+    seg_P0 = P[:-1]
+    seg_P1 = P[1:]
+    V = seg_P1 - seg_P0
+    VV = np.sum(V*V, axis=1)
+
+    keep = VV > 0
+    seg_P0, V, VV = seg_P0[keep], V[keep], VV[keep]
+    S = seg_P0.shape[0]
+
+    bs = int(chunk_voxels)
+    for s in range(0, N, bs):
+        e = min(N, s+bs)
+        Rb = R[s:e]
+        # For each segment, compute distance from all Rb points to that segment
+        # t* = clamp_{[0,1]} ((Rb - P0)·V / (V·V))
+        # closest point C = P0 + t* V
+        # d^2 = ||Rb - C||^2
+        # We do this segment-by-segment to keep memory ~ B
+        d2_b = np.full(e - s, np.inf, dtype=float)
+        for k in range(S):
+            P0 = seg_P0[k]
+            v  = V[k]
+            vv = VV[k]
+            Rp = Rb - P0
+            t  = (Rp @ v) / vv
+            t  = np.clip(t, 0.0, 1.0)
+            C  = P0 + t[:,None]*v
+            d2 = np.sum((Rb - C)**2, axis=1)
+            d2_b = np.minimum(d2_b, d2)
+        min_d2[s:e] = d2_b
+
+    mask = (min_d2 <= float(radius)**2).reshape(X.shape)
+    return (mask, P, sel)
