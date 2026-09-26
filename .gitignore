@@ -6,3 +6,4 @@ bhnerf.egg-info/
 build/
 .ipynb_checkpoints/
 runs/
+results/
